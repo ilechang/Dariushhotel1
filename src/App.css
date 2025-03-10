@@ -1,0 +1,167 @@
+/* App.css */
+body {
+  background-color: #fff1de;
+  font-family: "serif";
+}
+
+.navbar-nav .nav-link {
+  color: black;
+  font-size: 16px;
+}
+
+.navbar-nav .nav-link.active {
+  color: #0c756e !important;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.hero-text {
+  width: 40%;
+}
+
+.hero-image {
+  width: 100%;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.book-btn {
+  margin-top: 20px;
+  background-color: #F2B43B;
+  
+}
+
+.libre-caslon-text-regular {
+  font-family: "Libre Caslon Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.libre-caslon-text-bold {
+  font-family: "Libre Caslon Text", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.libre-caslon-text-regular-italic {
+  font-family: "Libre Caslon Text", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.dancing-script {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  font-size: 7rem;
+  letter-spacing: 10px;
+  z-index: 1000;
+}
+
+
+.elememt{
+  height:550px
+}
+
+
+/* lg screens (md) */
+@media (max-width: 1025px) {
+  h1 {
+    font-size: 6rem;
+    letter-spacing: 5px;
+    color:blue
+  }
+  .elememt{
+    height:300px
+  }
+  
+}
+
+/* Medium screens (md) */
+@media (max-width: 992px) {
+  h1 {
+    font-size: 4rem;
+    letter-spacing: 5px;
+    color:green
+  }
+  .elememt{
+    height:300px
+  }
+  
+}
+
+/* Small screens (sm) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 5rem;
+    letter-spacing: 0px;
+    color:red
+  }
+  .elememt{
+    height:250px
+  }
+
+}
+
+.carousel-indicators {
+  bottom: -50px !important; /* Moves indicators further down */
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: gray; /* Optional: Change indicator color */
+  width: 50px;
+  height: 3px;
+
+}
+body, html {
+  overflow-x: hidden; /* Prevents horizontal scroll */
+  max-width: 100vw; /* Ensures content doesn't exceed viewport */
+  margin:0;
+  padding: 0;
+}
+
+.container-fluid {
+  max-width: 100vw; /* Prevents extra width issues */
+}
+
+.room-intro {
+  background-image: url("/Vector 97.png"); /* Set background image */
+  background-size: cover; /* Cover entire section */
+
+  background-repeat: no-repeat; /* Prevent repeating */
+  width: 100vw; /* Full viewport width */
+  min-height: 120vh; /* Try increasing height */
+  position: relative; /* Ensure absolute elements position correctly */
+}
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+    line-height: 2.8;
+}
+/* Remove default styles from all links */
+a {
+  text-decoration: none !important; /* Removes underline */
+  color: inherit !important; /* Inherits text color */
+}
+
+a:hover {
+  text-decoration: none !important; /* No underline on hover */
+  color: inherit !important; /* No color change on hover */
+}
