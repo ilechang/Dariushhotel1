@@ -165,3 +165,111 @@ a:hover {
   text-decoration: none !important; /* No underline on hover */
   color: inherit !important; /* No color change on hover */
 }
+
+.roboto400 {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+    line-height: 2.8;
+}
+
+
+.custom-calendar {
+  background-color: #fff1de !important;
+  border: none !important;
+}
+
+.custom-calendar abbr {
+  text-decoration: none;
+}
+
+
+
+/* 確保整個日曆不會自動換行 */
+.custom-calendar {
+  background-color: #fff1de !important;
+  border: none !important;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 修正月份名稱換行問題 */
+.react-calendar__navigation button {
+  background-color: #fff1de !important;
+  color: black !important;
+  font-size: 14px;
+  white-space: nowrap; /* 避免換行 */
+}
+
+/* 確保星期名稱不換行 */
+.react-calendar__month-view__weekdays {
+  white-space: nowrap;
+}
+
+/* 縮小日曆數字，確保不佔用過多空間 */
+.react-calendar__tile {
+  font-size: 12px;
+  text-align: center;
+  background-color: #fff1de !important;
+  color: rgb(0, 0, 0) !important;
+  white-space: nowrap;
+}
+
+.selected-start {
+  background-color: #88c0d0 !important; /* 起始日期：珊瑚橘色 */
+  color: white !important;
+
+}
+
+.selected-range {
+  background-color: #88c0d0 !important; /* 選取範圍：淡藍色 */
+  color: white !important;
+
+}
+
+/* 調整 calendar 內部行距 */
+.custom-calendar {
+  width: 100% !important;
+}
+
+.custom-calendar .react-calendar__month-view__weekdays {
+  font-size: 14px; /* 縮小字體 */
+  padding-bottom: 2px; /* 減少行之間的距離 */
+}
+
+.custom-calendar .react-calendar__month-view__days button {
+  padding: 4px 0 !important; /* 減少按鈕的高度 */
+  height: 20px !important; /* 控制日期格子的高度 */
+  line-height: 1 !important; /* 讓文字更緊湊 */
+}
+
+.custom-calendar .react-calendar__tile {
+  padding: 2px !important; /* 減少 padding */
+  min-height: 10px !important; /* 減少日期格子高度 */
+}
+
+/* 讓星期名稱完整顯示 */
+.custom-calendar .react-calendar__month-view__weekdays__weekday {
+  font-size: 11px !important; /* 控制字體大小 */
+  white-space: nowrap !important; /* 禁止換行，確保完整顯示 */
+  text-transform: uppercase !important; /* 讓星期縮寫為大寫 */
+  color:grey;
+font-weight: 200;
+}
+
+/* 縮小月份標題 (March 2025) 的上下間距 */
+.custom-calendar .react-calendar__navigation {
+  margin-bottom: 2px !important; /* 減少底部空間 */
+  padding: 2px 0 !important; /* 減少內邊距 */
+
+}
+
+/* 確保日曆間距統一 */
+.custom-calendar .react-calendar__month-view__weekdays {
+  padding-bottom: 2px !important; /* 減少底部空間 */
+}

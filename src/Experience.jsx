@@ -41,7 +41,7 @@ const Experience = () => {
   
         <div className="ps-5 ms-5">
         <div className="container-fluid ps-5 py-5">
-          <h2 className="libre-caslon-text-regular mb-4 py-2 ms-2">Rooms and Suites</h2>
+          <h2 className="libre-caslon-text-regular mb-4 py-2 ms-2">Hotel Experience</h2>
       
           <Carousel
             activeIndex={index}
