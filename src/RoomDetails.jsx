@@ -1,4 +1,5 @@
 
+
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Calendar from "react-calendar";
@@ -7,6 +8,7 @@ import { Container, Row, Col, Button, ListGroup, Card } from "react-bootstrap";
 import { BiBed, BiBuilding, BiTv, BiBath, BiAccessibility, BiDish } from "react-icons/bi"; // Serious icons
 import { BsChevronRight, BsInfoCircle } from "react-icons/bs"; // Chevron icon
 import { FaCheck } from "react-icons/fa"; // ✅ Checkmark icon
+import VRScene from "./VRScene";
 
 const roomDetails = [
     { icon: <BiBed size={24} className="me-3" />, title: "Bed Room", description: "1 bed room & meeting room" },
@@ -50,6 +52,19 @@ const RoomDetails = () => {
         }
     };
 
+
+
+
+
+    const [showVR, setShowVR] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const handleShowVR = () => {
+        setLoading(true); // 先顯示 Loading
+        setShowVR(true);
+    };
+
+
     return (
         <Container className="py-3 roboto400">
             <br />
@@ -59,10 +74,85 @@ const RoomDetails = () => {
             </div>
             {/* Top Row: Room Image & Rooms Section */}
             <Row className="mb-4">
+
+
+
+
+                {/* 
+純圖片 */}
+
                 {/* Room Image (col-8) */}
+                {/* <Col md={8} className="d-flex justify-content-center">
+                    <div className="position-relative w-100">
+                        <img src="/roombig.png" alt="Room" className="img-fluid w-100 h-auto" />
+                        <button
+                            className="position-absolute top-0 end-0 m-2 border-0 bg-white rounded-4 shadow"
+                            style={{ width: "50px", height: "40px" }}
+                        >
+                            <img src="/vr.png" alt="VR Icon" className="w-75 h-75 mb-2" />
+                        </button>
+                    </div>
+                </Col> */}
+
+
+
+
+
+
+
+
+
+
+
+                {/* 
+這段程式會把圖片改成3d scene   尺寸跟圖片一樣 */}
+
                 <Col md={8} className="d-flex justify-content-center">
-                    <img src="/roombig.png" alt="Room" className="img-fluid w-100 h-auto" />
+                    <div className="position-relative w-100">
+                        {!showVR ? (
+                            <>
+                                <img src="/roombig.png" alt="Room" className="img-fluid w-100 h-auto" />
+                                <button
+                                    className="position-absolute top-0 end-0 m-2 border-0 bg-white rounded-4 shadow"
+                                    style={{ width: "50px", height: "40px" }}
+                                    onClick={handleShowVR}
+                                >
+                                    <img src="/vr.png" alt="VR Icon" className="w-75 h-75 mb-2" />
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                {loading && (
+                                    <div style={{top: "60%"}} className="position-absolute start-50 translate-middle bg-white py-1 px-5 rounded-3 shadow">
+                                        <h4 className="mt-1">Loading...</h4>
+                                    </div>
+                                )}
+                                <VRScene setLoading={setLoading} />
+                                <button
+                                    className="position-absolute top-0 end-0 m-2 border-0 bg-white rounded-4 shadow"
+                                    style={{ width: "50px", height: "40px", zIndex: 10 }}
+                                    onClick={() => setShowVR(false)}
+                                >
+                                    ❌
+                                </button>
+                            </>
+                        )}
+                    </div>
                 </Col>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <Col md={4}>
                     <Card
                         className="p-3 rounded-4 border-0"
@@ -267,3 +357,31 @@ const RoomDetails = () => {
 };
 
 export default RoomDetails;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
