@@ -1,7 +1,7 @@
 
 
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState,  useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Import default calendar styles
 import { Container, Row, Col, Button, ListGroup, Card } from "react-bootstrap";
@@ -52,7 +52,10 @@ const RoomDetails = () => {
         }
     };
 
-
+//讓頁面從最上方開始顯示
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
 
 
@@ -129,11 +132,30 @@ const RoomDetails = () => {
                                 )}
                                 <VRScene setLoading={setLoading} />
                                 <button
-                                    className="position-absolute top-0 end-0 m-2 border-0 bg-white rounded-4 shadow"
-                                    style={{ width: "50px", height: "40px", zIndex: 10 }}
+                                    className="position-absolute top-0 end-0 m-2 border-0 "
+                                    style={{
+                                        position: "absolute",
+                                        bottom: "10px",
+                                        left: "95%",
+                                        transform: "translateX(-50%)",
+                                        width: "40px",  // 限制按鈕大小
+                                        height: "40px", 
+                                        padding: "0", // 移除預設 padding
+                                        fontSize: "24px", // 讓圖標看起來清晰
+                                        lineHeight: "1", // 確保內部沒有多餘空間
+                                        background: "rgba(255, 255, 255, 0.5)",
+                                        color: "black",
+                                        border: "none",
+                                        cursor: "pointer",
+                                        zIndex: 1000,
+                                        display: "flex", 
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        borderRadius: "6px", // 讓按鈕有點圓角
+                                    }}
                                     onClick={() => setShowVR(false)}
                                 >
-                                    ❌
+                                    ✖ 
                                 </button>
                             </>
                         )}
