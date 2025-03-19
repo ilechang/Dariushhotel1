@@ -60,6 +60,7 @@ function Second() {
                             src={reviews[currentReview].image}
                             alt="Reviewers"
                             className="mt-5 cursor-pointer"
+                            style={{ cursor: "pointer" }}  // Manually enforcing pointer cursor
                             width="200"
                             onClick={handleReviewClick}
                         />

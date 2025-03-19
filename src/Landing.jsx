@@ -13,7 +13,9 @@ function Landing() {
 <br />
 <br />
 
-<div className="hero-container container d-flex justify-content-center position-relative">
+<br />
+<br />
+<div className="hero-container container d-flex justify-content-center position-relative ">
 
   <h1 style={{ top: "2%" }} className="position-absolute ">Dariush <span className="dancing-script ">Grand</span> Hotel</h1>
   <div className="d-flex justify-content-center position-reletive">
