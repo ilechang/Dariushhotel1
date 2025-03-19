@@ -24,7 +24,7 @@ const VRScene = () => {
                 <body style="margin:0; overflow:hidden;">
                     <a-scene embedded>
                         <a-entity
-                            gltf-model="/5.glb"
+                            gltf-model="/3.glb"
                             position="0 0 0"
                             scale="1 1 1"
                             rotation="0 180 0"
@@ -61,7 +61,7 @@ const VRScene = () => {
                 renderer="antialias: true; colorManagement: true"
             >
                 <a-entity
-                    gltf-model="/5.glb"
+                    gltf-model="/3.glb"
                     position="0 0 0"
                     scale="1 1 1"
                     rotation="0 180 0"
