@@ -12,19 +12,19 @@ function Landing() {
 <br />
 <br />
 <br />
-
 <br />
 <br />
 <div className="hero-container container d-flex justify-content-center position-relative ">
 
-  <h1 style={{ top: "2%" }} className="position-absolute ">Dariush <span className="dancing-script ">Grand</span> Hotel</h1>
+  <h1  style={{ top: "2%" }} className="position-absolute bigtitle">Dariush <span className="dancing-script ">Grand</span> Hotel</h1>
   <div className="d-flex justify-content-center position-reletive">
     <img src="/Element.png" alt="Hero" className="elememt mt-5 position-absolute start-0 " style={{ top: "15%" }}/>
     {/* Image Column */}
     <div className="col-5 d-flex">
 
-    <div className="d-flex flex-column flex-md-row align-items-md-end">
+    <div className="d-flex flex-column flex-md-row align-items-md-end pt-4">
 {/* Image Column */}
+
 <img src="/heroimage.png" alt="Hero" className="img-fluid w-100 mt-5" />
 
 {/* Text & Button - Stacks below image on md and smaller */}
