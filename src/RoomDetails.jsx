@@ -39,7 +39,7 @@ const bookingOptions = [
 
 const RoomDetails = () => {
     const [selectedRange, setSelectedRange] = useState([]); // 存儲選取的日期範圍
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState("flight");
 
     // 選擇日期範圍
     const handleDateClick = (date) => {
@@ -69,7 +69,7 @@ const RoomDetails = () => {
 
 
     return (
-        <Container className="py-3 roboto400">
+        <Container className="py-3 mt-5 roboto400">
             <br />
             <div className="d-flex justify-content-between align-items-center roboto500">
                 <h3>Room View and Details</h3>
@@ -299,7 +299,7 @@ const RoomDetails = () => {
                         }}
                     >
                         <img src="/breakfirst.png" alt="Complimentary Breakfast" className="img-fluid rounded-4" />
-                        <h6 className="mt-2 mb-4  roboto400 ">We serve Complimentary breakfast with this room</h6>
+                        <h6 className="mt-4 mb-5 lh-base roboto400 ">We serve Complimentary breakfast with this room</h6>
                     </div>
                 </Col>
 
@@ -318,7 +318,7 @@ const RoomDetails = () => {
                             {bookingOptions.map((option) => (
                                 <ListGroup.Item
                                     key={option.id}
-                                    className={`border rounded-0 p-3 mb-2 ${selectedOption === option.id ? "border border-1 border-dark" : ""}`}
+                                    className={`border rounded-0 p-3 mb-2 ${selectedOption === option.id ? "border border-1 border-secondary" : ""}`}
                                     style={{
                                         background: "transparent",
                                         borderColor: selectedOption === option.id ? "#555" : "#CCC",
@@ -359,10 +359,10 @@ const RoomDetails = () => {
 
                         {/* Booking Buttons */}
                         <Card.Body className="text-center">
-                            <Button variant="outline-dark" className="me-2 rounded-pill px-3" style={{ borderColor: "#07756C", color: "#07756C" }}>
+                            <Button variant="outline-dark" className="me-3 rounded-pill px-5" style={{ borderColor: "#07756C", color: "#07756C" }}>
                                 Compare
                             </Button>
-                            <Button className="rounded-pill px-3" style={{ backgroundColor: "#07756C", borderColor: "#07756C" }}>
+                            <Button className="rounded-pill px-5" style={{ backgroundColor: "#07756C", borderColor: "#07756C" }}>
                                 Book Now
                             </Button>
                         </Card.Body>
@@ -374,6 +374,8 @@ const RoomDetails = () => {
             {/* <div className="text-center mt-4">
                 <Button variant="primary" onClick={() => navigate("/")}>Go Back</Button>
             </div> */}
+            <br />
+            <br />
         </Container>
     );
 };

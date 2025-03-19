@@ -20,7 +20,7 @@ const RoomIntro = () => {
   return (
     <div className="ps-3">
       <br />
-      <div className="container-fluid w-100 py-5 room-intro position-relative mt-5 ps-5">
+      <div className="container-fluid w-100 py-5 position-relative mt-5 ps-5">
         <div className="mx-5">
           <div className="libre-caslon-text-regular d-flex justify-content-between align-items-center ps-5 mx-5 mb-5">
             <p className="small-text fw-bold mb-0">Name of the room</p>
@@ -43,10 +43,12 @@ const RoomIntro = () => {
                 className="ms-5 img w-75"
                 style={{ position: "relative", zIndex: "1000" }}
               />
+                        {/* Right Column: Room Details */}
+
               {/* Button and List Container */}
               <div className="d-flex ms-5 align-items-end gap-5">
                 <button 
-                  className="btn btn-outline-dark libre-caslon-text-regular rounded-0"
+                  className="btn btn-outline-dark libre-caslon-text-regular text-nowrap rounded-0"
                   onClick={() => navigate("/room-details")} // ✅ Navigate to RoomDetails
                 >
                   Learn More
@@ -74,7 +76,19 @@ const RoomIntro = () => {
                 </div>
               ))}
             </div>
+
+
+
           </div>
+          <Container fluid>
+
+<h1 className="libre-caslon-text-regular" style={{ position: "absolute", top: "17%", left: "26%" }}>
+  KING-SIZE BED <br />
+  <span style={{ whiteSpace: "nowrap", position: "absolute", left: "55%" }}>SEA-VIEW <br />
+    ROOM</span>
+</h1>
+
+</Container>
         </div>
       </div>
     </div>
@@ -205,10 +219,7 @@ export default RoomIntro;
 //                 ROOM</span>
 //             </h1>
 
-//             <div className="col-md-8 d-flex flex-column justify-content-between">
-
-
-//             </div>
+      
 //           </Container>
 //         </div>
 //       </div>

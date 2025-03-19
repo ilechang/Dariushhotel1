@@ -21,10 +21,10 @@ function App() {
         <Route path="/" element={
           <>
             <div id="home"><Landing /></div>
-            <div id="rooms"><Second /></div>
-            <div id="hotel-experiences"><Room /></div>
-            <div id="city-experiences"><RoomIntro /></div>
-            <div id="experience"><Experience /></div>
+            <div id=""><Second /></div>
+            <div id="rooms"><Room /></div>
+            <div id="" className="room-intro" ><RoomIntro /></div>
+            <div id="city-experiences"><Experience /></div>
             <Footer />
           </>
         } />

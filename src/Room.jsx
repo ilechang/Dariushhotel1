@@ -6,8 +6,8 @@ import "./App.css"; // Optional for styling
 const Room = () => {
     const rooms = [
         { img: "/room1.png", title: "Opulent penthouse suite with breathtaking sea views" },
-        { img: "/room2.png", title: "A short description of the room, including the 3D visuals" },
-        { img: "/room3.png", title: "A short description of the room, including the 3D visuals" },
+        { img: "/room2.png", title: "Lavish beachfront villa with panoramic sunset vistas" },
+        { img: "/room3.png", title: "Elegant royal suite with stunning skyline panoramas" },
         { img: "/room4.png", title: "A short description of the room, including the 3D visuals" },
         { img: "/room5.png", title: "A short description of the room, including the 3D visuals" },
         { img: "/room1.png", title: "A short description of the room, including the 3D visuals" },
@@ -70,7 +70,7 @@ const Room = () => {
                         <div className="mt-3">
                           <div className="d-flex justify-content-between align-items-center text-start px-2 mt-3">
                             <p className="col-8 mb-0">{room.title}</p>
-                            <Button variant="outline-dark" className="rounded-0">
+                            <Button variant="outline-dark" className="rounded-0 text-nowrap">
                               Learn More
                             </Button>
                           </div>

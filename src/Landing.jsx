@@ -15,7 +15,7 @@ function Landing() {
 
 <div className="hero-container container d-flex justify-content-center position-relative">
 
-  <h1 style={{ top: "4%" }} className="position-absolute ">Dariush <span className="dancing-script ">Grand</span> Hotel</h1>
+  <h1 style={{ top: "2%" }} className="position-absolute ">Dariush <span className="dancing-script ">Grand</span> Hotel</h1>
   <div className="d-flex justify-content-center position-reletive">
     <img src="/Element.png" alt="Hero" className="elememt mt-5 position-absolute start-0 " style={{ top: "15%" }}/>
     {/* Image Column */}
