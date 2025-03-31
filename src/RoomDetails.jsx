@@ -129,7 +129,7 @@ const RoomDetails = () => {
                                     onClick={() => setShowVR(false)}
                                     style={{
                                         position: "absolute",
-                                        bottom: "10px",
+                                        top: "10px",
                                         left: "95%",
                                         transform: "translateX(-50%)",
                                         width: "40px",
@@ -158,7 +158,7 @@ const RoomDetails = () => {
                                         }}
                                     style={{
                                         position: "absolute",
-                                        bottom: "10px",
+                                        top: "10px",
                                         left: "95%",
                                         transform: "translateX(-50%)",
                                         width: "40px",
