@@ -76,6 +76,27 @@ const RoomDetails = () => {
         setShowView(true);
     };
 
+      // 每次關閉 VR 或 View 後修正畫面佈局
+  useEffect(() => {
+    if (!showVR && !showView) {
+      const container = document.querySelector("a-scene")?.parentElement;
+      if (container) container.style.height = "auto";
+    }
+  }, [showVR, showView]);
+
+  // 頁面載入時自動滾回頂部
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleCloseScene = () => {
+    setShowVR(false);
+    setShowView(false);
+    // 延遲滾動，讓 React 有時間卸載 <a-scene>
+    setTimeout(() => {
+      document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
 
     return (
         <Container className="py-3 mt-5 roboto400">
