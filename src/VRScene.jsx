@@ -147,11 +147,13 @@ const VRScene = () => {
             "_blank",
             `width=${screen.width},height=${screen.height},top=0,left=0`
         );
-
+    
         if (newWindow) {
             newWindow.document.write(`
+                <!DOCTYPE html>
                 <html>
                 <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
                     <style>
                         body {
@@ -159,13 +161,13 @@ const VRScene = () => {
                             overflow: hidden;
                         }
                         #close-btn {
-                            position: absolute;
+                            position: fixed;
                             top: 10px;
                             left: 10px;
                             width: 40px;
                             height: 40px;
                             font-size: 24px;
-                            background: rgba(255, 255, 255, 0.7);
+                            background: rgba(255, 255, 255, 0.9);
                             color: black;
                             border: none;
                             border-radius: 6px;
@@ -192,26 +194,30 @@ const VRScene = () => {
                             </a-camera>
                         </a-entity>
                     </a-scene>
-
+    
                     <script>
-                        document.getElementById("close-btn").onclick = () => {
-                            window.close();
-                        };
+                        window.addEventListener('DOMContentLoaded', () => {
+                            document.getElementById("close-btn").onclick = () => {
+                                window.close();
+                            };
+    
+                            // Delay fullscreen so styles can render
+                            setTimeout(() => {
+                                const el = document.documentElement;
+                                if (el.requestFullscreen) el.requestFullscreen();
+                                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+                                else if (el.msRequestFullscreen) el.msRequestFullscreen();
+                            }, 300);
+                        });
                     </script>
                 </body>
                 </html>
             `);
-
+    
             newWindow.document.close();
-
-            newWindow.onload = () => {
-                const el = newWindow.document.documentElement;
-                if (el.requestFullscreen) el.requestFullscreen();
-                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-                else if (el.msRequestFullscreen) el.msRequestFullscreen();
-            };
         }
     };
+    
 
     return (
         <>
