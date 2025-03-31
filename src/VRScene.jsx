@@ -82,7 +82,7 @@ const VRScene = () => {
                 onClick={openFullscreenWindow}
                 style={{
                     position: "absolute",
-                    bottom: "10px",
+                    top: "60px",
                     left: "95%",
                     transform: "translateX(-50%)",
                     width: "40px",  // 限制按鈕大小
