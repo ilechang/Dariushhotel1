@@ -23,7 +23,7 @@ const ViewScene = () => {
                 vr-mode-ui="enabled: false"
                 webxr="optional: false"
             >
-                <a-sky src="/environmentMaps/illovo_beach_balcony_8k.jpg" rotation="0 -90 0"></a-sky>
+                <a-sky src="/environmentMaps/view.jpg" rotation="0 -90 0"></a-sky>
                 <a-entity id="camera-rig" position="0 1.6 0">
                     <a-camera wasd-controls="acceleration: 15" look-controls>
                         <a-cursor></a-cursor>
