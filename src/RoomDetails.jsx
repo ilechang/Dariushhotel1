@@ -1,7 +1,7 @@
 
 
 import { useNavigate } from "react-router-dom";
-import React, { useState,  useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Import default calendar styles
 import { Container, Row, Col, Button, ListGroup, Card } from "react-bootstrap";
@@ -9,6 +9,8 @@ import { BiBed, BiBuilding, BiTv, BiBath, BiAccessibility, BiDish } from "react-
 import { BsChevronRight, BsInfoCircle } from "react-icons/bs"; // Chevron icon
 import { FaCheck } from "react-icons/fa"; // ✅ Checkmark icon
 import VRScene from "./VRScene";
+import ViewScene from "./ViewScene";
+
 
 const roomDetails = [
     { icon: <BiBed size={24} className="me-3" />, title: "Bed Room", description: "1 bed room & meeting room" },
@@ -52,19 +54,26 @@ const RoomDetails = () => {
         }
     };
 
-//讓頁面從最上方開始顯示
+    //讓頁面從最上方開始顯示
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
 
 
 
     const [showVR, setShowVR] = useState(false);
+    const [showView, setShowView] = useState(false); // ← 新增這行
     const [loading, setLoading] = useState(false);
 
     const handleShowVR = () => {
-        setLoading(true); // 先顯示 Loading
+        setLoading(true);
         setShowVR(true);
+        setShowView(false); // 確保 "See View" 被關閉
+    };
+
+    const handleShowView = () => {
+        setShowVR(false);   // 確保 "See Room" 被關閉
+        setShowView(true);
     };
 
 
@@ -82,20 +91,99 @@ const RoomDetails = () => {
 
 
                 {/* 
-純圖片 */}
-
-                {/* Room Image (col-8) */}
-                {/* <Col md={8} className="d-flex justify-content-center">
+這段程式會把圖片改成3d room+view scene   尺寸跟圖片一樣 */}
+                <Col md={8} className="d-flex justify-content-center">
                     <div className="position-relative w-100">
-                        <img src="/roombig.png" alt="Room" className="img-fluid w-100 h-auto" />
-                        <button
-                            className="position-absolute top-0 end-0 m-2 border-0 bg-white rounded-4 shadow"
-                            style={{ width: "50px", height: "40px" }}
-                        >
-                            <img src="/vr.png" alt="VR Icon" className="w-75 h-75 mb-2" />
-                        </button>
+                        {!showVR && !showView ? (
+                            <>
+                                <img src="/roombig.png" alt="Room" className="img-fluid w-100 h-auto" />
+                                <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
+                                    <button
+                                        className="border-0 bg-white rounded-pill shadow"
+                                        style={{ width: "150px", height: "40px" }}
+                                        onClick={handleShowVR}
+                                    >
+                                        <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
+                                        See Room
+                                    </button>
+
+                                    <button
+                                        className="border-0 bg-white rounded-pill shadow"
+                                        style={{ width: "150px", height: "40px" }}
+                                        onClick={handleShowView} // ← 使用 handleShowView
+                                    >
+                                        <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
+                                        See View
+                                    </button>
+                                </div>
+                            </>
+                        ) : showVR ? (
+                            <>
+                                {loading && (
+                                    <div style={{ top: "60%" }} className="position-absolute start-50 translate-middle bg-white py-1 px-5 rounded-3 shadow">
+                                        <h4 className="mt-1">Loading...</h4>
+                                    </div>
+                                )}
+                                <VRScene setLoading={setLoading} />
+                                <button
+                                    onClick={() => setShowVR(false)}
+                                    style={{
+                                        position: "absolute",
+                                        bottom: "10px",
+                                        left: "95%",
+                                        transform: "translateX(-50%)",
+                                        width: "40px",
+                                        height: "40px",
+                                        background: "rgba(255, 255, 255, 0.5)",
+                                        border: "none",
+                                        borderRadius: "6px",
+                                        fontSize: "24px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        cursor: "pointer",
+                                        zIndex: 1000,
+                                    }}
+                                >
+                                    ✖
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <ViewScene />
+                                <button
+                                        onClick={() => {
+                                            setShowVR(false);
+                                            setShowView(false);
+                                        }}
+                                    style={{
+                                        position: "absolute",
+                                        bottom: "10px",
+                                        left: "95%",
+                                        transform: "translateX(-50%)",
+                                        width: "40px",
+                                        height: "40px",
+                                        background: "rgba(255, 255, 255, 0.5)",
+                                        border: "none",
+                                        borderRadius: "6px",
+                                        fontSize: "24px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        cursor: "pointer",
+                                        zIndex: 1000,
+                                    }}
+                                >
+                                    ✖
+                                </button>
+                            </>
+                        )}
                     </div>
-                </Col> */}
+                </Col>
+
+
+
+
 
 
 
@@ -108,19 +196,19 @@ const RoomDetails = () => {
 
 
                 {/* 
-這段程式會把圖片改成3d scene   尺寸跟圖片一樣 */}
+這段程式會把圖片改成3d room scene   尺寸跟圖片一樣 */}
 
-                <Col md={8} className="d-flex justify-content-center">
+                {/* <Col md={8} className="d-flex justify-content-center">
                     <div className="position-relative w-100">
                         {!showVR ? (
                             <>
                                 <img src="/roombig.png" alt="Room" className="img-fluid w-100 h-auto" />
                                 <button
-                                    className="position-absolute top-0 end-0 m-2 border-0 bg-white rounded-4 shadow"
-                                    style={{ width: "50px", height: "40px" }}
+                                    className="position-absolute top-0 end-0 m-2 border-0 bg-white rounded-pill shadow"
+                                    style={{ width: "150px", height: "40px" }}
                                     onClick={handleShowVR}
                                 >
-                                    <img src="/vr.png" alt="VR Icon" className="w-75 h-75 mb-2" />
+                                    <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />See Room
                                 </button>
                             </>
                         ) : (
@@ -160,7 +248,7 @@ const RoomDetails = () => {
                             </>
                         )}
                     </div>
-                </Col>
+                </Col> */}
 
 
 
