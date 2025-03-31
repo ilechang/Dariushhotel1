@@ -93,6 +93,7 @@ const RoomDetails = () => {
                 {/* 
 這段程式會把圖片改成3d room+view scene   尺寸跟圖片一樣 */}
                 <Col md={8} className="d-flex justify-content-center">
+                    <div id="scroll-anchor"></div> {/* ← 滾動定位點 */}
                     <div className="position-relative w-100">
                         {!showVR && !showView ? (
                             <>
@@ -110,7 +111,7 @@ const RoomDetails = () => {
                                     <button
                                         className="border-0 bg-white rounded-pill shadow"
                                         style={{ width: "150px", height: "40px" }}
-                                        onClick={handleShowView} // ← 使用 handleShowView
+                                        onClick={handleShowView}
                                     >
                                         <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
                                         See View
@@ -120,13 +121,20 @@ const RoomDetails = () => {
                         ) : showVR ? (
                             <>
                                 {loading && (
-                                    <div style={{ top: "60%" }} className="position-absolute start-50 translate-middle bg-white py-1 px-5 rounded-3 shadow">
+                                    <div
+                                        style={{ top: "60%" }}
+                                        className="position-absolute start-50 translate-middle bg-white py-1 px-5 rounded-3 shadow"
+                                    >
                                         <h4 className="mt-1">Loading...</h4>
                                     </div>
                                 )}
                                 <VRScene setLoading={setLoading} />
                                 <button
-                                    onClick={() => setShowVR(false)}
+                                    onClick={() => {
+                                        setShowVR(false);
+                                        setShowView(false);
+                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+                                    }}
                                     style={{
                                         position: "absolute",
                                         top: "10px",
@@ -152,10 +160,11 @@ const RoomDetails = () => {
                             <>
                                 <ViewScene />
                                 <button
-                                        onClick={() => {
-                                            setShowVR(false);
-                                            setShowView(false);
-                                        }}
+                                    onClick={() => {
+                                        setShowVR(false);
+                                        setShowView(false);
+                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+                                    }}
                                     style={{
                                         position: "absolute",
                                         top: "10px",
@@ -180,6 +189,7 @@ const RoomDetails = () => {
                         )}
                     </div>
                 </Col>
+
 
 
 
