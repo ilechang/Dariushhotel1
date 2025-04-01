@@ -161,7 +161,7 @@ const VRScene = () => {
                         #close-btn {
                             position: absolute;
                             top: 10px;
-                            left: 10px;
+                            right: 10px;
                             width: 40px;
                             height: 40px;
                             font-size: 24px;
