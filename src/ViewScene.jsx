@@ -7,33 +7,33 @@ const ViewScene = () => {
 
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-        const requestMotionPermission = async () => {
-            if (
-                typeof DeviceMotionEvent !== "undefined" &&
-                typeof DeviceMotionEvent.requestPermission === "function"
-            ) {
-                try {
-                    const response = await DeviceMotionEvent.requestPermission();
-                    if (response === "granted") {
-                        console.log("Motion permission granted");
-                        if (isMobile) {
+        if (isMobile) {
+            // Add click listener to handle permission + fullscreen window
+            const handler = async () => {
+                if (
+                    typeof DeviceMotionEvent !== "undefined" &&
+                    typeof DeviceMotionEvent.requestPermission === "function"
+                ) {
+                    try {
+                        const response = await DeviceMotionEvent.requestPermission();
+                        if (response === "granted") {
                             openFullscreenWindow();
+                        } else {
+                            alert("Motion permission is required for immersive experience.");
                         }
-                    } else {
-                        alert("Motion permission is required for immersive experience.");
+                    } catch (err) {
+                        console.error("Motion permission error:", err);
                     }
-                } catch (err) {
-                    console.error("Motion permission error:", err);
-                }
-            } else {
-                // Android or other devices
-                if (isMobile) {
+                } else {
+                    // Android or older iOS
                     openFullscreenWindow();
                 }
-            }
-        };
 
-        requestMotionPermission();
+                document.removeEventListener("click", handler);
+            };
+
+            document.addEventListener("click", handler, { once: true });
+        }
     }, []);
 
     const openFullscreenWindow = () => {
@@ -101,6 +101,7 @@ const ViewScene = () => {
                             window.close();
                         };
 
+                        // In case iOS double-permission required
                         function requestDeviceOrientationPermission() {
                             if (
                                 typeof DeviceOrientationEvent !== "undefined" &&
@@ -137,7 +138,6 @@ const ViewScene = () => {
 
     return (
         <>
-            {/* 桌機版仍顯示內嵌 <a-scene>，手機已自動開新視窗 */}
             <div
                 style={{
                     position: "relative",
@@ -161,7 +161,6 @@ const ViewScene = () => {
                     </a-entity>
                 </a-scene>
 
-                {/* ⛶ 手動開啟全螢幕視窗按鈕（主要給桌機使用） */}
                 <button
                     onClick={openFullscreenWindow}
                     style={{
@@ -191,7 +190,6 @@ const ViewScene = () => {
 };
 
 export default ViewScene;
-
 
 
 
