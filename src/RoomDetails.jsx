@@ -1,7 +1,7 @@
 
 
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Import default calendar styles
 import { Container, Row, Col, Button, ListGroup, Card } from "react-bootstrap";
@@ -98,6 +98,24 @@ const RoomDetails = () => {
         }, 100);
     };
 
+
+
+    const cardRef = useRef(null);
+    const [leftHeight, setLeftHeight] = useState("auto");
+
+    useEffect(() => {
+        const resize = () => {
+            if (cardRef.current) {
+                setLeftHeight(cardRef.current.offsetHeight + "px");
+            }
+        };
+        resize(); // 初始設一次
+        window.addEventListener("resize", resize);
+        return () => window.removeEventListener("resize", resize);
+    }, []);
+
+
+
     return (
         <Container className="py-3 mt-5 roboto400">
             <br />
@@ -115,24 +133,22 @@ const RoomDetails = () => {
 
 
 
-            {/* 
-這段程式會把圖片改成3d room+view scene   尺寸跟圖片一樣 */}
-            <Row className="align-items-stretch mb-4">
+            <Row className="w-100 mb-4">
                 {/* 左邊圖片或3D區塊 */}
-                <Col md={8} className="d-flex flex-column h-100">
+                <Col md={8}>
                     <div id="scroll-anchor"></div>
-                    <div className="position-relative w-100 h-100">
+                    <div
+                        className="position-relative w-100 overflow-hidden rounded-4"
+                        style={{ height: leftHeight }}
+                    >
                         {!showVR && !showView ? (
                             <>
-                                <div className="w-100 h-100 overflow-hidden rounded-4">
-                                    <img
-                                        src="/roombig.jpg"
-                                        alt="Room"
-                                        className="w-100 h-100"
-                                        style={{ objectFit: "cover" }}
-                                    />
-                                </div>
-
+                                <img
+                                    src="/roombig.jpg"
+                                    alt="Room"
+                                    className="w-100 h-100"
+                                    style={{ objectFit: "cover" }}
+                                />
                                 <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
                                     <button
                                         className="border-0 bg-white rounded-pill shadow"
@@ -228,6 +244,7 @@ const RoomDetails = () => {
                 {/* 右邊 Room details 卡片 */}
                 <Col md={4}>
                     <Card
+                        ref={cardRef}
                         className="p-3 rounded-4 border-0 h-100"
                         style={{ background: "linear-gradient(to bottom, #EAE3DA, #FFE7C6)" }}
                     >
@@ -253,7 +270,6 @@ const RoomDetails = () => {
                     </Card>
                 </Col>
             </Row>
-
 
 
 
