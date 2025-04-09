@@ -117,7 +117,7 @@ const RoomDetails = () => {
 
 
     return (
-        <Container className="py-3 mt-5 roboto400">
+        <Container className="p-0 py-3 mt-5 roboto400 ">
             <br />
             <div className="d-flex justify-content-between align-items-center roboto500">
                 <h3>Room View and Details</h3>
@@ -127,18 +127,12 @@ const RoomDetails = () => {
 
 
 
-
-
-
-
-
-
-            <Row className="w-100 mb-4">
+            <Row className="w-100 m-0  mb-4 ">
                 {/* 左邊圖片或3D區塊 */}
-                <Col md={8}>
+                <Col md={8} className="ps-0 ">
                     <div id="scroll-anchor"></div>
                     <div
-                        className="position-relative w-100 overflow-hidden rounded-4"
+                        className="position-relative w-100 overflow-hidden  rounded-4"
                         style={{ height: leftHeight }}
                     >
                         {!showVR && !showView ? (
@@ -146,7 +140,7 @@ const RoomDetails = () => {
                                 <img
                                     src="/roombig.jpg"
                                     alt="Room"
-                                    className="w-100 h-100"
+                                    className="w-100 h-100 "
                                     style={{ objectFit: "cover" }}
                                 />
                                 <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
@@ -242,10 +236,10 @@ const RoomDetails = () => {
                 </Col>
 
                 {/* 右邊 Room details 卡片 */}
-                <Col md={4}>
+                <Col md={4} className="pe-0 ">
                     <Card
                         ref={cardRef}
-                        className="p-3 rounded-4 border-0 h-100"
+                        className="p-3 rounded-4 border-0 h-100 "
                         style={{ background: "linear-gradient(to bottom, #EAE3DA, #FFE7C6)" }}
                     >
                         <Card.Title className="fw-bold ms-2 mt-2 pb-2 border-bottom">Rooms</Card.Title>
