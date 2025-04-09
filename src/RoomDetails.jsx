@@ -327,21 +327,27 @@ const RoomDetails = () => {
                                             showNeighboringMonth={false}
                                             prev2Label={null}
                                             next2Label={null}
-                                            onClickDay={handleDateClick} // ✅ 點選時更新
+                                            onClickDay={handleDateClick}
+                                            formatShortWeekday={(locale, date) =>
+                                                date.toLocaleDateString("en-GB", { weekday: "short" }).slice(0, 2)
+                                            }
                                             tileClassName={({ date }) => {
-                                                if (selectedRange.length === 1 && date.getTime() === selectedRange[0].getTime()) {
-                                                    return "selected-start"; // ✅ 起始日期變色
+                                                if (
+                                                    selectedRange.length === 1 &&
+                                                    date.getTime() === selectedRange[0].getTime()
+                                                ) {
+                                                    return "selected-start";
                                                 }
                                                 if (selectedRange.length === 2) {
-                                                    const start = selectedRange[0];
-                                                    const end = selectedRange[1];
+                                                    const [start, end] = selectedRange;
                                                     if (start && end && date >= start && date <= end) {
-                                                        return "selected-range"; // ✅ 讓範圍內的日期變色
+                                                        return "selected-range";
                                                     }
                                                 }
                                                 return "";
                                             }}
                                         />
+
                                     </div>
                                 </Card>
                             </Col>
