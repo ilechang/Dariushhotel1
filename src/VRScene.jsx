@@ -1,7 +1,7 @@
 import "aframe";
 import { useEffect } from "react";
 
-const VRScene = ({ setLoading, setShowVR }) => {
+const VRScene = ({ setLoading, setShowVR, style = {} }) => {
     useEffect(() => {
         console.log("A-Frame VR Scene Loaded!");
 
@@ -10,10 +10,10 @@ const VRScene = ({ setLoading, setShowVR }) => {
             openFullscreenWindow();
         }
 
-        // Show sky only after GLB model is loaded (in embedded mode)
         const onModelLoaded = () => {
             const sky = document.querySelector("#sky-bg");
             if (sky) sky.setAttribute("visible", "true");
+            setLoading(false); // ✅ Stop loading once model is ready
         };
 
         const model = document.querySelector("#room-model");
@@ -21,7 +21,6 @@ const VRScene = ({ setLoading, setShowVR }) => {
             model.addEventListener("model-loaded", onModelLoaded);
         }
 
-        // Handle message from fullscreen window to close VR
         const handleMessage = (event) => {
             if (event.data === "exit-vr") {
                 setShowVR(false);
@@ -35,7 +34,7 @@ const VRScene = ({ setLoading, setShowVR }) => {
             }
             window.removeEventListener("message", handleMessage);
         };
-    }, [setShowVR]);
+    }, [setLoading, setShowVR]);
 
     const openFullscreenWindow = () => {
         const newWindow = window.open(
@@ -126,15 +125,16 @@ const VRScene = ({ setLoading, setShowVR }) => {
         }
     };
 
+    const containerStyle = {
+        position: "relative",
+        width: "100%",
+        height: style?.height || "60vh",
+        overflow: "hidden",
+        ...style,
+    };
+
     return (
-        <div
-            style={{
-                position: "relative",
-                width: "100%",
-                height: "60vh",
-                overflow: "hidden",
-            }}
-        >
+        <div style={containerStyle}>
             <a-scene
                 embedded
                 renderer="antialias: true; colorManagement: true"
@@ -142,7 +142,6 @@ const VRScene = ({ setLoading, setShowVR }) => {
                 webxr="optional: false"
                 style={{ width: "100%", height: "100%" }}
             >
-                {/* Sky is initially hidden until model loads */}
                 <a-sky id="sky-bg" src="/environmentMaps/view.jpg" rotation="0 150 -2" visible="false"></a-sky>
 
                 <a-entity
@@ -211,32 +210,10 @@ export default VRScene;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import "aframe";
 // import { useEffect } from "react";
 
-// const VRScene = () => {
+// const VRScene = ({ setLoading, setShowVR }) => {
 //     useEffect(() => {
 //         console.log("A-Frame VR Scene Loaded!");
 
@@ -256,12 +233,21 @@ export default VRScene;
 //             model.addEventListener("model-loaded", onModelLoaded);
 //         }
 
+//         // Handle message from fullscreen window to close VR
+//         const handleMessage = (event) => {
+//             if (event.data === "exit-vr") {
+//                 setShowVR(false);
+//             }
+//         };
+//         window.addEventListener("message", handleMessage);
+
 //         return () => {
 //             if (model) {
 //                 model.removeEventListener("model-loaded", onModelLoaded);
 //             }
+//             window.removeEventListener("message", handleMessage);
 //         };
-//     }, []);
+//     }, [setShowVR]);
 
 //     const openFullscreenWindow = () => {
 //         const newWindow = window.open(
@@ -324,6 +310,9 @@ export default VRScene;
 //                     <script>
 //                         document.getElementById("close-btn").onclick = () => {
 //                             window.close();
+//                             if (window.opener) {
+//                                 window.opener.postMessage("exit-vr", "*");
+//                             }
 //                         };
 
 //                         const model = document.querySelector("#room-model");
@@ -350,73 +339,80 @@ export default VRScene;
 //     };
 
 //     return (
-//         <>
-//             <div
+//         <div
+//             style={{
+//                 position: "relative",
+//                 width: "100%",
+//                 height: "60vh",
+//                 overflow: "hidden",
+//             }}
+//         >
+//             <a-scene
+//                 embedded
+//                 renderer="antialias: true; colorManagement: true"
+//                 vr-mode-ui="enabled: false"
+//                 webxr="optional: false"
+//                 style={{ width: "100%", height: "100%" }}
+//             >
+//                 {/* Sky is initially hidden until model loads */}
+//                 <a-sky id="sky-bg" src="/environmentMaps/view.jpg" rotation="0 150 -2" visible="false"></a-sky>
+
+//                 <a-entity
+//                     id="room-model"
+//                     gltf-model="/bedroom1.glb"
+//                     position="0 0 0"
+//                     scale="1 1 1"
+//                     rotation="0 180 0"
+//                     shadow="receive: true; cast: true"
+//                 ></a-entity>
+
+//                 <a-light type="ambient" intensity="0.8"></a-light>
+//                 <a-light type="directional" intensity="0.6" position="5 10 5"></a-light>
+
+//                 <a-entity id="camera-rig" position="0 1.6 3">
+//                     <a-camera wasd-controls="acceleration: 15" look-controls position="0 1.6 0">
+//                         <a-cursor></a-cursor>
+//                     </a-camera>
+//                 </a-entity>
+//             </a-scene>
+
+//             <button
+//                 onClick={openFullscreenWindow}
 //                 style={{
-//                     position: "relative",
-//                     width: "100%",
-//                     height: "60vh",
-//                     overflow: "hidden",
+//                     position: "absolute",
+//                     top: "10px",
+//                     left: "10px",
+//                     width: "40px",
+//                     height: "40px",
+//                     padding: "0",
+//                     fontSize: "24px",
+//                     background: "rgba(255, 255, 255, 0.5)",
+//                     color: "black",
+//                     border: "none",
+//                     cursor: "pointer",
+//                     zIndex: 1000,
+//                     display: "flex",
+//                     alignItems: "center",
+//                     justifyContent: "center",
+//                     borderRadius: "6px",
 //                 }}
 //             >
-//                 <a-scene
-//                     embedded
-//                     renderer="antialias: true; colorManagement: true"
-//                     vr-mode-ui="enabled: false"
-//                     webxr="optional: false"
-//                     style={{ width: "100%", height: "100%" }}
-//                 >
-//                     {/* Sky is initially hidden until model loads */}
-//                     <a-sky id="sky-bg" src="/environmentMaps/view.jpg" rotation="0 150 -2" visible="false"></a-sky>
-
-//                     <a-entity
-//                         id="room-model"
-//                         gltf-model="/bedroom1.glb"
-//                         position="0 0 0"
-//                         scale="1 1 1"
-//                         rotation="0 180 0"
-//                         shadow="receive: true; cast: true"
-//                     ></a-entity>
-
-//                     <a-light type="ambient" intensity="0.8"></a-light>
-//                     <a-light type="directional" intensity="0.6" position="5 10 5"></a-light>
-
-//                     <a-entity id="camera-rig" position="0 1.6 3">
-//                         <a-camera wasd-controls="acceleration: 15" look-controls position="0 1.6 0">
-//                             <a-cursor></a-cursor>
-//                         </a-camera>
-//                     </a-entity>
-//                 </a-scene>
-
-//                 <button
-//                     onClick={openFullscreenWindow}
-//                     style={{
-//                         position: "absolute",
-//                         top: "10px",
-//                         left: "10px",
-//                         width: "40px",
-//                         height: "40px",
-//                         padding: "0",
-//                         fontSize: "24px",
-//                         background: "rgba(255, 255, 255, 0.5)",
-//                         color: "black",
-//                         border: "none",
-//                         cursor: "pointer",
-//                         zIndex: 1000,
-//                         display: "flex",
-//                         alignItems: "center",
-//                         justifyContent: "center",
-//                         borderRadius: "6px",
-//                     }}
-//                 >
-//                     ⛶
-//                 </button>
-//             </div>
-//         </>
+//                 ⛶
+//             </button>
+//         </div>
 //     );
 // };
 
 // export default VRScene;
+
+
+
+
+
+
+
+
+
 
 
 
