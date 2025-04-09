@@ -129,7 +129,7 @@ const RoomDetails = () => {
 
             <Row className="w-100 m-0  mb-4 ">
                 {/* 左邊圖片或3D區塊 */}
-                <Col md={8} className="ps-0 ">
+                <Col md={8} className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2">
                     <div id="scroll-anchor"></div>
                     <div
                         className="position-relative w-100 overflow-hidden  rounded-4"
@@ -236,7 +236,7 @@ const RoomDetails = () => {
                 </Col>
 
                 {/* 右邊 Room details 卡片 */}
-                <Col md={4} className="pe-0 ">
+                <Col md={4} className="pe-md-0 px-0 py-2 px-sm-3 py-sm-2">
                     <Card
                         ref={cardRef}
                         className="p-3 rounded-4 border-0 h-100 "
