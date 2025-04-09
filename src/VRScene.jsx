@@ -315,7 +315,7 @@ const VRScene = () => {
 
                         <a-entity
                             id="room-model"
-                            gltf-model="/bedroom1.glb"
+                            gltf-model="/bedroom.glb"
                             position="0 0 0"
                             scale="1 1 1"
                             rotation="0 180 0"
@@ -382,7 +382,7 @@ const VRScene = () => {
 
                     <a-entity
                         id="room-model"
-                        gltf-model="/bedroom1.glb"
+                        gltf-model="/bedroom.glb"
                         position="0 0 0"
                         scale="1 1 1"
                         rotation="0 180 0"

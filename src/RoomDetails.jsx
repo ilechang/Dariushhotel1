@@ -76,27 +76,27 @@ const RoomDetails = () => {
         setShowView(true);
     };
 
-      // 每次關閉 VR 或 View 後修正畫面佈局
-  useEffect(() => {
-    if (!showVR && !showView) {
-      const container = document.querySelector("a-scene")?.parentElement;
-      if (container) container.style.height = "auto";
-    }
-  }, [showVR, showView]);
+    // 每次關閉 VR 或 View 後修正畫面佈局
+    useEffect(() => {
+        if (!showVR && !showView) {
+            const container = document.querySelector("a-scene")?.parentElement;
+            if (container) container.style.height = "auto";
+        }
+    }, [showVR, showView]);
 
-  // 頁面載入時自動滾回頂部
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // 頁面載入時自動滾回頂部
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
-  const handleCloseScene = () => {
-    setShowVR(false);
-    setShowView(false);
-    // 延遲滾動，讓 React 有時間卸載 <a-scene>
-    setTimeout(() => {
-      document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
+    const handleCloseScene = () => {
+        setShowVR(false);
+        setShowView(false);
+        // 延遲滾動，讓 React 有時間卸載 <a-scene>
+        setTimeout(() => {
+            document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+    };
 
     return (
         <Container className="py-3 mt-5 roboto400">
@@ -106,19 +106,33 @@ const RoomDetails = () => {
                 <p>Room No: 244</p>
             </div>
             {/* Top Row: Room Image & Rooms Section */}
-            <Row className="mb-4">
 
 
 
 
-                {/* 
+
+
+
+
+
+            {/* 
 這段程式會把圖片改成3d room+view scene   尺寸跟圖片一樣 */}
-                <Col md={8} className="d-flex justify-content-center">
-                    <div id="scroll-anchor"></div> {/* ← 滾動定位點 */}
-                    <div className="position-relative w-100">
+            <Row className="align-items-stretch mb-4">
+                {/* 左邊圖片或3D區塊 */}
+                <Col md={8} className="d-flex flex-column h-100">
+                    <div id="scroll-anchor"></div>
+                    <div className="position-relative w-100 h-100">
                         {!showVR && !showView ? (
                             <>
-                                <img src="/roombig.png" alt="Room" className="img-fluid w-100 h-auto" />
+                                <div className="w-100 h-100 overflow-hidden rounded-4">
+                                    <img
+                                        src="/roombig.jpg"
+                                        alt="Room"
+                                        className="w-100 h-100"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
+
                                 <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
                                     <button
                                         className="border-0 bg-white rounded-pill shadow"
@@ -144,7 +158,7 @@ const RoomDetails = () => {
                                 {loading && (
                                     <div
                                         style={{ top: "60%" }}
-                                        className="position-absolute start-50 translate-middle bg-white py-1 px-5 rounded-3 shadow"
+                                        className="position-absolute start-50 translate-middle bg-white py-1 px-5 shadow"
                                     >
                                         <h4 className="mt-1">Loading...</h4>
                                     </div>
@@ -156,8 +170,8 @@ const RoomDetails = () => {
                                         setShowView(false);
                                         document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
                                     }}
+                                    className="position-absolute"
                                     style={{
-                                        position: "absolute",
                                         top: "10px",
                                         left: "95%",
                                         transform: "translateX(-50%)",
@@ -186,8 +200,8 @@ const RoomDetails = () => {
                                         setShowView(false);
                                         document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
                                     }}
+                                    className="position-absolute"
                                     style={{
-                                        position: "absolute",
                                         top: "10px",
                                         left: "95%",
                                         transform: "translateX(-50%)",
@@ -211,19 +225,10 @@ const RoomDetails = () => {
                     </div>
                 </Col>
 
-
-
-
-
-
-
-
-
-
-
+                {/* 右邊 Room details 卡片 */}
                 <Col md={4}>
                     <Card
-                        className="p-3 rounded-4 border-0"
+                        className="p-3 rounded-4 border-0 h-100"
                         style={{ background: "linear-gradient(to bottom, #EAE3DA, #FFE7C6)" }}
                     >
                         <Card.Title className="fw-bold ms-2 mt-2 pb-2 border-bottom">Rooms</Card.Title>
@@ -232,7 +237,7 @@ const RoomDetails = () => {
                                 <ListGroup.Item
                                     key={index}
                                     className="d-flex justify-content-between align-items-center border-0 py-1"
-                                    style={{ background: "transparent" }} // ✅ Removes any white background
+                                    style={{ background: "transparent" }}
                                 >
                                     <div className="d-flex align-items-center">
                                         {room.icon}
@@ -246,10 +251,24 @@ const RoomDetails = () => {
                             ))}
                         </ListGroup>
                     </Card>
-
                 </Col>
-
             </Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             {/* Bottom Row: Descriptions, Calendar, Booking */}
             <Row>
