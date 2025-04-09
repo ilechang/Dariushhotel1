@@ -173,7 +173,7 @@ const RoomDetails = () => {
                                         <h4 className="mt-1">Loading...</h4>
                                     </div>
                                 )}
-                                <VRScene setLoading={setLoading} />
+                                <VRScene setLoading={setLoading} setShowVR={setShowVR} />
                                 <button
                                     onClick={() => {
                                         setShowVR(false);
