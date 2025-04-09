@@ -203,7 +203,8 @@ const RoomDetails = () => {
                             </>
                         ) : (
                             <>
-                                <ViewScene setShowView={setShowView} />
+                               <ViewScene setShowView={setShowView} style={{ height: leftHeight }} />
+
                                 <button
                                     onClick={() => {
                                         setShowVR(false);
