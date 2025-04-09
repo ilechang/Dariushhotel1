@@ -440,21 +440,39 @@ const RoomDetails = () => {
 
                         {/* Booking Buttons */}
                         <Card.Body className="text-center">
-                            <Button variant="outline-dark" className="me-3 rounded-pill px-5" style={{ borderColor: "#07756C", color: "#07756C" }}>
-                                Compare
-                            </Button>
-                            <Button className="rounded-pill px-5" style={{ backgroundColor: "#07756C", borderColor: "#07756C" }}>
-                                Book Now
-                            </Button>
+                            <div className="d-flex flex-column align-items-center mt-3" style={{ gap: "12px" }}>
+                                <Button
+                                    variant="outline-dark"
+                                    className="rounded-pill text-nowrap fw-semibold"
+                                    style={{
+                                        borderColor: "#07756C",
+                                        color: "#07756C",
+                                        width: "200px",
+                                        padding: "10px 0",
+                                    }}
+                                >
+                                    Compare
+                                </Button>
+
+                                <Button
+                                    className="rounded-pill text-nowrap fw-semibold"
+                                    style={{
+                                        backgroundColor: "#07756C",
+                                        borderColor: "#07756C",
+                                        color: "white",
+                                        width: "200px",
+                                        padding: "10px 0",
+                                    }}
+                                >
+                                    Book Now
+                                </Button>
+                            </div>
                         </Card.Body>
                     </Card>
                 </Col>
             </Row>
 
-            {/* Back Button */}
-            {/* <div className="text-center mt-4">
-                <Button variant="primary" onClick={() => navigate("/")}>Go Back</Button>
-            </div> */}
+
             <br />
             <br />
         </Container>
