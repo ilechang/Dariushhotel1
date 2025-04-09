@@ -203,7 +203,7 @@ const RoomDetails = () => {
                             </>
                         ) : (
                             <>
-                                <ViewScene />
+                                <ViewScene setShowView={setShowView} />
                                 <button
                                     onClick={() => {
                                         setShowVR(false);
