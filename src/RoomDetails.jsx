@@ -213,7 +213,7 @@ const RoomDetails = () => {
                                         transform: "translateX(-50%)",
                                         width: "40px",
                                         height: "40px",
-                                        background: "rgba(255, 255, 255, 0.5)",
+                                        background: "rgba(55, 55, 55, 0.5)",
                                         border: "none",
                                         borderRadius: "6px",
                                         fontSize: "24px",
