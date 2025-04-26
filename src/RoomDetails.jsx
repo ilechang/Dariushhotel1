@@ -129,7 +129,7 @@ const RoomDetails = () => {
                     <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: leftHeight }}>
                         {!showVR && !showView ? (
                             <>
-                                <div style={{ width: "100%", height: "75%" }}>
+                                <div style={{ width: "100%" }}>
                                     <img
                                         src="/roombig.jpg"
                                         alt="Room"
