@@ -242,7 +242,12 @@ const RoomDetails = () => {
                             <br/>
                             <br/>
                             <br/>
-                           
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
                   
                         </p>
                       
