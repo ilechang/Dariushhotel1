@@ -160,7 +160,7 @@ const RoomDetails = () => {
       ) : showVR ? (
         <>
   
-          <div >
+          <div className="h-75">
             <VRScene setLoading={setLoading} setShowVR={setShowVR} />
           </div>
           <button
@@ -188,7 +188,7 @@ const RoomDetails = () => {
         </>
       ) : (
         <>
-          <div >
+          <div className="h-75">
             <ViewScene setShowView={setShowView} />
           </div>
           <button
