@@ -238,7 +238,14 @@ const RoomDetails = () => {
                         <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
                         <p className="mt-5 lh-base">
                             Perspolis suite, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                           
+                  
                         </p>
+                      
                     </div>
 
 
@@ -528,7 +535,7 @@ export default RoomDetails;
 
 
 
-//good old code  reuse this
+// good old code  reuse this
 
 
 
