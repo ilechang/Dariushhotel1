@@ -91,7 +91,7 @@ const ViewScene = ({ setShowView, style = {} }) => {
             </a-scene>
 
             {/* 進入全螢幕按鈕 */}
-            {!isFullscreen && window.innerWidth >= 768 && (
+            {!isFullscreen && window.innerWidth >= 800 && (
     <button
         onClick={enterFullscreen}
         style={{

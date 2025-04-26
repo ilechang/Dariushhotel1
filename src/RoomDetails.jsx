@@ -124,128 +124,140 @@ const RoomDetails = () => {
 
             <Row className="w-100 m-0  mb-4 ">
                 {/* 左邊圖片或3D區塊 */}
-                <Col md={8} className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2">
-                    <div id="scroll-anchor"></div>
-                    <div
-                        className="position-relative w-100 overflow-hidden  rounded-4"
-                        style={{ height: leftHeight }}
-                    >
-                        {!showVR && !showView ? (
-                            <>
-                                <img
-                                    src="/roombig.jpg"
-                                    alt="Room"
-                                    className="w-100 h-100 "
-                                    style={{ objectFit: "cover" }}
-                                />
-                                <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
-                                    <button
-                                        className="border-0 bg-white rounded-pill shadow"
-                                        style={{ width: "150px", height: "40px" }}
-                                        onClick={handleShowVR}
-                                    >
-                                        <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
-                                        See Room
-                                    </button>
+     {/* 右邊 Room details 卡片（小螢幕時放上面） */}
+  <Col
+    xs={12}
+    md={4}
+    className="pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
+  >
+    <div
+      ref={cardRef}
+      className="d-flex flex-column align-items-start ps-4"
+      style={{ height: "50vh" }}
+    >
+      <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
+      <p className="mt-5 lh-base">
+        Perspolis suite, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
+      </p>
+    </div>
+  </Col>
 
-                                    <button
-                                        className="border-0 bg-white rounded-pill shadow"
-                                        style={{ width: "150px", height: "40px" }}
-                                        onClick={handleShowView}
-                                    >
-                                        <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
-                                        See View
-                                    </button>
-                                </div>
-                            </>
-                        ) : showVR ? (
-                            <>
-                                {loading && (
-                                    <div
-                                        style={{ top: "60%" }}
-                                        className="position-absolute start-50 translate-middle bg-white py-1 px-5 shadow"
-                                    >
-                                        <h4 className="mt-1">Loading...</h4>
-                                    </div>
-                                )}
-                                <VRScene setLoading={setLoading} setShowVR={setShowVR} style={{ height: leftHeight }} />
-                                <button
-                                    onClick={() => {
-                                        setShowVR(false);
-                                        setShowView(false);
-                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
-                                    }}
-                                    className="position-absolute"
-                                    style={{
-                                        top: "10px",
-                                        left: "95%",
-                                        transform: "translateX(-50%)",
-                                        width: "40px",
-                                        height: "40px",
-                                        background: "rgba(255, 255, 255, 0.5)",
-                                        border: "none",
-                                        borderRadius: "6px",
-                                        fontSize: "24px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        cursor: "pointer",
-                                        zIndex: 1000,
-                                    }}
-                                >
-                                    ✖
-                                </button>
-                            </>
-                        ) : (
-                            <>
-                                <ViewScene setShowView={setShowView} style={{ height: leftHeight }} />
-
-                                <button
-                                    onClick={() => {
-                                        setShowVR(false);
-                                        setShowView(false);
-                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
-                                    }}
-                                    className="position-absolute"
-                                    style={{
-                                        top: "10px",
-                                        left: "95%",
-                                        transform: "translateX(-50%)",
-                                        width: "40px",
-                                        height: "40px",
-                                        background: "rgba(55, 55, 55, 0.5)",
-                                        border: "none",
-                                        borderRadius: "6px",
-                                        fontSize: "24px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        cursor: "pointer",
-                                        zIndex: 1000,
-                                    }}
-                                >
-                                    ✖
-                                </button>
-                            </>
-                        )}
-                    </div>
-                </Col>
-
-                {/* 右邊 Room details 卡片 */}
-                <Col md={4} className="pe-md-0 px-0 py-2 px-sm-3 py-sm-2">
-
-
-                    <div ref={cardRef} className=" d-flex flex-column justify-content-top align-items-start ps-4   " style={{ height: "50vh" }}>
-                        <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
-                        <p className="mt-5 lh-base">
-                            Perspolis suite, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
-   
-                        </p>
-                      
-                    </div>
-
-
-                </Col>
+  {/* 左邊圖片或3D區塊 */}
+  <Col
+    xs={12}
+    md={8}
+    className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
+  >
+    <div id="scroll-anchor"></div>
+    <div
+      className="position-relative w-100 overflow-hidden rounded-4"
+      style={{ height: leftHeight }}
+    >
+      {!showVR && !showView ? (
+        <>
+          <img
+            src="/roombig.jpg"
+            alt="Room"
+            className="w-100 h-100"
+            style={{ objectFit: "cover" }}
+          />
+          <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
+            <button
+              className="border-0 bg-white rounded-pill shadow"
+              style={{ width: "150px", height: "40px" }}
+              onClick={handleShowVR}
+            >
+              <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
+              See Room
+            </button>
+            <button
+              className="border-0 bg-white rounded-pill shadow"
+              style={{ width: "150px", height: "40px" }}
+              onClick={handleShowView}
+            >
+              <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
+              See View
+            </button>
+          </div>
+        </>
+      ) : showVR ? (
+        <>
+          {loading && (
+            <div
+              style={{ top: "60%" }}
+              className="position-absolute start-50 translate-middle bg-white py-1 px-5 shadow"
+            >
+              <h4 className="mt-1">Loading...</h4>
+            </div>
+          )}
+          <VRScene
+            setLoading={setLoading}
+            setShowVR={setShowVR}
+            style={{ height: leftHeight }}
+          />
+          <button
+            onClick={() => {
+              setShowVR(false);
+              setShowView(false);
+              document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="position-absolute"
+            style={{
+              top: "10px",
+              left: "95%",
+              transform: "translateX(-50%)",
+              width: "40px",
+              height: "40px",
+              background: "rgba(255, 255, 255, 0.5)",
+              border: "none",
+              borderRadius: "6px",
+              fontSize: "24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              zIndex: 1000,
+            }}
+          >
+            ✖
+          </button>
+        </>
+      ) : (
+        <>
+          <ViewScene
+            setShowView={setShowView}
+            style={{ height: leftHeight }}
+          />
+          <button
+            onClick={() => {
+              setShowVR(false);
+              setShowView(false);
+              document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="position-absolute"
+            style={{
+              top: "10px",
+              left: "95%",
+              transform: "translateX(-50%)",
+              width: "40px",
+              height: "40px",
+              background: "rgba(55, 55, 55, 0.5)",
+              border: "none",
+              borderRadius: "6px",
+              fontSize: "24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              zIndex: 1000,
+            }}
+          >
+            ✖
+          </button>
+        </>
+      )}
+    </div>
+  </Col>
             </Row>
 
 
