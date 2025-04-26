@@ -94,32 +94,7 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
                 </a-entity>
             </a-scene>
 
-            {/* 進入全螢幕按鈕 */}
-            {!isFullscreen && (
-                <button
-                    onClick={enterFullscreen}
-                    style={{
-                        position: "absolute",
-                        top: "10px",
-                        left: "10px",
-                        width: "40px",
-                        height: "40px",
-                        padding: "0",
-                        fontSize: "24px",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        color: "black",
-                        border: "none",
-                        cursor: "pointer",
-                        zIndex: 1000,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "6px",
-                    }}
-                >
-                    ⛶
-                </button>
-            )}
+            
 
             {/* 退出全螢幕按鈕 */}
             {isFullscreen && (
