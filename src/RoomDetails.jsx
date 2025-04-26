@@ -117,10 +117,7 @@ const RoomDetails = () => {
     return (
         <Container className="p-0 py-3 mt-5 roboto400 ">
             <br />
-            <div className="d-flex justify-content-between align-items-center roboto500">
-                <h3>Room View and Details</h3>
-                <p>Room No: 244</p>
-            </div>
+            <br />
             {/* Top Row: Room Image & Rooms Section */}
 
 
