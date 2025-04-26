@@ -99,7 +99,7 @@ const RoomDetails = () => {
 
 
     const cardRef = useRef(null);
-
+    const [leftHeight, setLeftHeight] = useState("auto");
 
     useEffect(() => {
         const resize = () => {
@@ -118,8 +118,8 @@ const RoomDetails = () => {
         <Container className="p-0 py-3 mt-5 roboto400 ">
             <br />
           
-
             <br />
+
 
             <Row className="w-100 m-0 mb-4">
   {/* 左邊圖片或3D區塊 */}
@@ -127,14 +127,14 @@ const RoomDetails = () => {
     <div id="scroll-anchor"></div>
     <div
       className="position-relative w-100 overflow-hidden rounded-4"
-      
+      style={{ height: leftHeight }}
     >
       {!showVR && !showView ? (
         <>
           <img
             src="/roombig.jpg"
             alt="Room"
-            className="w-100"
+            className="w-100 h-100"
             style={{ objectFit: "cover" }}
           />
           <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
@@ -160,7 +160,7 @@ const RoomDetails = () => {
       ) : showVR ? (
         <>
   
-          <div >
+          <div style={{ height: leftHeight }}>
             <VRScene setLoading={setLoading} setShowVR={setShowVR} />
           </div>
           <button
@@ -188,7 +188,7 @@ const RoomDetails = () => {
         </>
       ) : (
         <>
-          <div >
+          <div style={{ height: leftHeight }}>
             <ViewScene setShowView={setShowView} />
           </div>
           <button
