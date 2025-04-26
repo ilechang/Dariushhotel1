@@ -128,7 +128,7 @@ const RoomDetails = () => {
                     <div id="scroll-anchor"></div>
                     <div
                         className="position-relative w-100 overflow-hidden  rounded-4"
-                        style={{ height: leftHeight }}
+                        style={{ height: "auto" }}
                     >
                         {!showVR && !showView ? (
                             <>
