@@ -115,32 +115,28 @@ const RoomDetails = () => {
 
 
     return (
-        <Container className="p-0 py-3 mt-5 roboto400 ">
+        <Container className="p-0 py-3 mt-5 roboto400">
             <br />
             <div className="d-flex justify-content-between align-items-center roboto500">
                 <h3>Room View and Details</h3>
                 <p>Room No: 244</p>
             </div>
-            {/* Top Row: Room Image & Rooms Section */}
 
-
-
-            <Row className="w-100 m-0  mb-4 ">
+            <Row className="w-100 m-0 mb-4">
                 {/* 左邊圖片或3D區塊 */}
                 <Col md={8} className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2">
                     <div id="scroll-anchor"></div>
-                    <div
-                        className="position-relative w-100 overflow-hidden  rounded-4"
-                        style={{ height: leftHeight }}
-                    >
+                    <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: leftHeight }}>
                         {!showVR && !showView ? (
                             <>
-                                <img
-                                    src="/roombig.jpg"
-                                    alt="Room"
-                                    className="w-100 h-100 "
-                                    style={{ objectFit: "cover" }}
-                                />
+                                <div style={{ width: "100%", height: "75%" }}>
+                                    <img
+                                        src="/roombig.jpg"
+                                        alt="Room"
+                                        className="w-100 h-100"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
                                 <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
                                     <button
                                         className="border-0 bg-white rounded-pill shadow"
@@ -150,7 +146,6 @@ const RoomDetails = () => {
                                         <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
                                         See Room
                                     </button>
-
                                     <button
                                         className="border-0 bg-white rounded-pill shadow"
                                         style={{ width: "150px", height: "40px" }}
@@ -164,20 +159,15 @@ const RoomDetails = () => {
                         ) : showVR ? (
                             <>
                                 {loading && (
-                                    <div
-                                        style={{ top: "60%" }}
-                                        className="position-absolute start-50 translate-middle bg-white py-1 px-5 shadow"
-                                    >
-                                        <h4 className="mt-1">Loading...</h4>
+                                    <div className="position-absolute start-50 top-50 translate-middle bg-white py-2 px-5 rounded shadow">
+                                        <h4 className="mb-0">Loading...</h4>
                                     </div>
                                 )}
-                                <VRScene setLoading={setLoading} setShowVR={setShowVR} style={{ height: leftHeight }} />
+                                <div style={{ width: "100%", height: "75%" }}>
+                                    <VRScene setLoading={setLoading} setShowVR={setShowVR} />
+                                </div>
                                 <button
-                                    onClick={() => {
-                                        setShowVR(false);
-                                        setShowView(false);
-                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
-                                    }}
+                                    onClick={handleCloseScene}
                                     className="position-absolute"
                                     style={{
                                         top: "10px",
@@ -201,14 +191,11 @@ const RoomDetails = () => {
                             </>
                         ) : (
                             <>
-                                <ViewScene setShowView={setShowView} style={{ height: leftHeight }} />
-
+                                <div style={{ width: "100%", height: "75%" }}>
+                                    <ViewScene setShowView={setShowView} />
+                                </div>
                                 <button
-                                    onClick={() => {
-                                        setShowVR(false);
-                                        setShowView(false);
-                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
-                                    }}
+                                    onClick={handleCloseScene}
                                     className="position-absolute"
                                     style={{
                                         top: "10px",
@@ -236,13 +223,14 @@ const RoomDetails = () => {
 
                 {/* 右邊 Room details 卡片 */}
                 <Col md={4} className="ps-5">
-                    <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
-                    <p className="mt-5 lh-base">
-                        Perspolis suite, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
-                    </p>
+                    <div ref={cardRef} className="h-100 d-flex flex-column justify-content-center align-items-start">
+                        <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
+                        <p className="mt-5 lh-base">
+                            Perspolis suite, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
+                        </p>
+                    </div>
                 </Col>
             </Row>
-
 
 
 
