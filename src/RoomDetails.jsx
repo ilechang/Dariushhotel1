@@ -234,21 +234,12 @@ const RoomDetails = () => {
                 {/* 右邊 Room details 卡片 */}
                 <Col md={4} className="pe-md-0 px-0 py-2 px-sm-3 py-sm-2">
 
-                    <div ref={cardRef} className="h-100 d-flex flex-column justify-content-top align-items-start ps-4">
+
+                    <div ref={cardRef} className="h-100 d-flex flex-column justify-content-top align-items-start ps-4   " style={{ height: "200px" }}>
                         <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
                         <p className="mt-5 lh-base">
                             Perspolis suite, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                  
+   
                         </p>
                       
                     </div>
