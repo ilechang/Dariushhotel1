@@ -34,7 +34,7 @@ const Title = () => {
       <div className="container-fluid mx-5 mt-3">
         {/* Logo */}
         <a className="navbar-brand" href="/">
-          <img src="/logo.svg" alt="Logo" width="50" />
+          <img src="/logo.png" alt="Logo" width="50" />
         </a>
 
         {/* Hamburger toggle button */}
