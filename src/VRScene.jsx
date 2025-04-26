@@ -98,7 +98,7 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
             </a-scene>
 
             {/* 進入全螢幕按鈕 */}
-            {!isFullscreen && (
+            {!isFullscreen && window.innerWidth >= 768 && (
                 <button
                     onClick={enterFullscreen}
                     style={{
@@ -124,8 +124,8 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
                 </button>
             )}
 
-            {/* 退出全螢幕按鈕 */}
-            {isFullscreen && (
+
+            {/* {isFullscreen && (
                 <button
                     onClick={exitFullscreen}
                     style={{
@@ -149,7 +149,7 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
                 >
                     ✖
                 </button>
-            )}
+            )} */}
         </div>
     );
 };
@@ -196,8 +196,8 @@ export default VRScene;
 
 //     const openFullscreenWindow = () => {
 //         const newWindow = window.open(
-//             "", 
-//             "_blank", 
+//             "",
+//             "_blank",
 //             `width=${screen.width},height=${screen.height},top=0,left=0`
 //         );
 
@@ -272,7 +272,7 @@ export default VRScene;
 //                     left: "95%",
 //                     transform: "translateX(-50%)",
 //                     width: "40px",  // 限制按鈕大小
-//                     height: "40px", 
+//                     height: "40px",
 //                     padding: "0", // 移除預設 padding
 //                     fontSize: "24px", // 讓圖標看起來清晰
 //                     lineHeight: "1", // 確保內部沒有多餘空間
@@ -281,7 +281,7 @@ export default VRScene;
 //                     border: "none",
 //                     cursor: "pointer",
 //                     zIndex: 1000,
-//                     display: "flex", 
+//                     display: "flex",
 //                     alignItems: "center",
 //                     justifyContent: "center",
 //                     borderRadius: "6px", // 讓按鈕有點圓角
