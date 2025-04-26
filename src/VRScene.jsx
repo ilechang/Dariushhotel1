@@ -1,8 +1,9 @@
 import "aframe";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const VRScene = ({ setLoading, setShowVR, style = {} }) => {
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const containerRef = useRef(null); // 新增 ref 指向 container div
 
     useEffect(() => {
         console.log("A-Frame VR Scene Loaded!");
@@ -52,7 +53,9 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
     };
 
     const enterFullscreen = () => {
-        const el = document.documentElement;
+        const el = containerRef.current;
+        if (!el) return;
+
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
@@ -65,7 +68,7 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
     };
 
     return (
-        <div style={containerStyle}>
+        <div ref={containerRef} style={containerStyle}>
             <a-scene
                 embedded
                 renderer="antialias: true; colorManagement: true"
@@ -94,7 +97,32 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
                 </a-entity>
             </a-scene>
 
-            
+            {/* 進入全螢幕按鈕 */}
+            {!isFullscreen && (
+                <button
+                    onClick={enterFullscreen}
+                    style={{
+                        position: "absolute",
+                        top: "10px",
+                        left: "10px",
+                        width: "40px",
+                        height: "40px",
+                        padding: "0",
+                        fontSize: "24px",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        color: "black",
+                        border: "none",
+                        cursor: "pointer",
+                        zIndex: 1000,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: "6px",
+                    }}
+                >
+                    ⛶
+                </button>
+            )}
 
             {/* 退出全螢幕按鈕 */}
             {isFullscreen && (
