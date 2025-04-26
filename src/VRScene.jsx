@@ -98,7 +98,7 @@ const VRScene = ({ setLoading, setShowVR, style = {} }) => {
             </a-scene>
 
             {/* 進入全螢幕按鈕 */}
-            {!isFullscreen && window.innerWidth >= 960 && (
+            {!isFullscreen && window.innerWidth >= 955 && (
                 <button
                     onClick={enterFullscreen}
                     style={{
