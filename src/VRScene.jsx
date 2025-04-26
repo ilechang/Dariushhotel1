@@ -1,67 +1,83 @@
-
-
 import "aframe";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const VRScene = () => {
+const VRScene = ({ setLoading, setShowVR, style = {} }) => {
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
     useEffect(() => {
-        console.log("A-Frame Scene Loaded!");
-    }, []);
+        console.log("A-Frame VR Scene Loaded!");
 
-    const openFullscreenWindow = () => {
-        const newWindow = window.open(
-            "", 
-            "_blank", 
-            `width=${screen.width},height=${screen.height},top=0,left=0`
-        );
+        const onModelLoaded = () => {
+            const sky = document.querySelector("#sky-bg");
+            if (sky) sky.setAttribute("visible", "true");
+            setLoading(false);
+        };
 
-        if (newWindow) {
-            newWindow.document.write(`
-                <html>
-                <head>
-                    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-                </head>
-                <body style="margin:0; overflow:hidden;">
-                    <a-scene embedded>
-                        <a-entity
-                            gltf-model="/3.glb"
-                            position="0 0 0"
-                            scale="1 1 1"
-                            rotation="0 180 0"
-                            shadow="receive: true; cast: true"
-                        ></a-entity>
-                        <a-light type="ambient" intensity="0.8"></a-light>
-                        <a-light type="directional" intensity="0.6" position="5 10 5"></a-light>
-                        <a-entity id="camera-rig" position="0 1.6 3">
-                            <a-camera wasd-controls="acceleration: 15" look-controls position="0 1.6 0">
-                                <a-cursor></a-cursor>
-                            </a-camera>
-                        </a-entity>
-                    </a-scene>
-                </body>
-                </html>
-            `);
-
-            newWindow.document.close();
-
-            // 嘗試自動全螢幕
-            newWindow.onload = () => {
-                if (newWindow.document.documentElement.requestFullscreen) {
-                    newWindow.document.documentElement.requestFullscreen();
-                }
-            };
+        const model = document.querySelector("#room-model");
+        if (model) {
+            model.addEventListener("model-loaded", onModelLoaded);
         }
+
+        const handleMessage = (event) => {
+            if (event.data === "exit-vr") {
+                setShowVR(false);
+            }
+        };
+        window.addEventListener("message", handleMessage);
+
+        // 監聽 fullscreen 狀態變化
+        const handleFullscreenChange = () => {
+            const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
+            setIsFullscreen(!!fsElement);
+        };
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+
+        return () => {
+            if (model) {
+                model.removeEventListener("model-loaded", onModelLoaded);
+            }
+            window.removeEventListener("message", handleMessage);
+            document.removeEventListener("fullscreenchange", handleFullscreenChange);
+            document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+        };
+    }, [setLoading, setShowVR]);
+
+    const containerStyle = {
+        position: "relative",
+        width: "100%",
+        height: style?.height || "60vh",
+        overflow: "hidden",
+        ...style,
+    };
+
+    const enterFullscreen = () => {
+        const el = document.documentElement;
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+    };
+
+    const exitFullscreen = () => {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
     };
 
     return (
-        <>
+        <div style={containerStyle}>
             <a-scene
                 embedded
-                xr-mode-ui="enabled: false"
                 renderer="antialias: true; colorManagement: true"
+                vr-mode-ui="enabled: false"
+                webxr="optional: false"
+                style={{ width: "100%", height: "100%" }}
             >
+                <a-sky id="sky-bg" src="/environmentMaps/view.jpg" rotation="0 150 -2" visible="false"></a-sky>
+
                 <a-entity
-                    gltf-model="/3.glb"
+                    id="room-model"
+                    gltf-model="/bedroom1.glb"
                     position="0 0 0"
                     scale="1 1 1"
                     rotation="0 180 0"
@@ -78,32 +94,60 @@ const VRScene = () => {
                 </a-entity>
             </a-scene>
 
-            <button
-                onClick={openFullscreenWindow}
-                style={{
-                    position: "absolute",
-                    bottom: "10px",
-                    left: "95%",
-                    transform: "translateX(-50%)",
-                    width: "40px",  // 限制按鈕大小
-                    height: "40px", 
-                    padding: "0", // 移除預設 padding
-                    fontSize: "24px", // 讓圖標看起來清晰
-                    lineHeight: "1", // 確保內部沒有多餘空間
-                    background: "rgba(255, 255, 255, 0.5)",
-                    color: "black",
-                    border: "none",
-                    cursor: "pointer",
-                    zIndex: 1000,
-                    display: "flex", 
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "6px", // 讓按鈕有點圓角
-                }}
-            >
-              ⛶
-            </button>
-        </>
+            {/* 進入全螢幕按鈕 */}
+            {!isFullscreen && (
+                <button
+                    onClick={enterFullscreen}
+                    style={{
+                        position: "absolute",
+                        top: "10px",
+                        left: "10px",
+                        width: "40px",
+                        height: "40px",
+                        padding: "0",
+                        fontSize: "24px",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        color: "black",
+                        border: "none",
+                        cursor: "pointer",
+                        zIndex: 1000,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: "6px",
+                    }}
+                >
+                    ⛶
+                </button>
+            )}
+
+            {/* 退出全螢幕按鈕 */}
+            {isFullscreen && (
+                <button
+                    onClick={exitFullscreen}
+                    style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        width: "40px",
+                        height: "40px",
+                        padding: "0",
+                        fontSize: "24px",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        color: "black",
+                        border: "none",
+                        cursor: "pointer",
+                        zIndex: 1000,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: "6px",
+                    }}
+                >
+                    ✖
+                </button>
+            )}
+        </div>
     );
 };
 
@@ -138,6 +182,115 @@ export default VRScene;
 
 
 
+// //code1
+// import "aframe";
+// import { useEffect } from "react";
+
+// const VRScene = () => {
+//     useEffect(() => {
+//         console.log("A-Frame Scene Loaded!");
+//     }, []);
+
+//     const openFullscreenWindow = () => {
+//         const newWindow = window.open(
+//             "", 
+//             "_blank", 
+//             `width=${screen.width},height=${screen.height},top=0,left=0`
+//         );
+
+//         if (newWindow) {
+//             newWindow.document.write(`
+//                 <html>
+//                 <head>
+//                     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+//                 </head>
+//                 <body style="margin:0; overflow:hidden;">
+//                     <a-scene embedded>
+//                         <a-entity
+//                             gltf-model="/3.glb"
+//                             position="0 0 0"
+//                             scale="1 1 1"
+//                             rotation="0 180 0"
+//                             shadow="receive: true; cast: true"
+//                         ></a-entity>
+//                         <a-light type="ambient" intensity="0.8"></a-light>
+//                         <a-light type="directional" intensity="0.6" position="5 10 5"></a-light>
+//                         <a-entity id="camera-rig" position="0 1.6 3">
+//                             <a-camera wasd-controls="acceleration: 15" look-controls position="0 1.6 0">
+//                                 <a-cursor></a-cursor>
+//                             </a-camera>
+//                         </a-entity>
+//                     </a-scene>
+//                 </body>
+//                 </html>
+//             `);
+
+//             newWindow.document.close();
+
+//             // 嘗試自動全螢幕
+//             newWindow.onload = () => {
+//                 if (newWindow.document.documentElement.requestFullscreen) {
+//                     newWindow.document.documentElement.requestFullscreen();
+//                 }
+//             };
+//         }
+//     };
+
+//     return (
+//         <>
+//             <a-scene
+//                 embedded
+//                 xr-mode-ui="enabled: false"
+//                 renderer="antialias: true; colorManagement: true"
+//             >
+//                 <a-entity
+//                     gltf-model="/3.glb"
+//                     position="0 0 0"
+//                     scale="1 1 1"
+//                     rotation="0 180 0"
+//                     shadow="receive: true; cast: true"
+//                 ></a-entity>
+
+//                 <a-light type="ambient" intensity="0.8"></a-light>
+//                 <a-light type="directional" intensity="0.6" position="5 10 5"></a-light>
+
+//                 <a-entity id="camera-rig" position="0 1.6 3">
+//                     <a-camera wasd-controls="acceleration: 15" look-controls position="0 1.6 0">
+//                         <a-cursor></a-cursor>
+//                     </a-camera>
+//                 </a-entity>
+//             </a-scene>
+
+//             <button
+//                 onClick={openFullscreenWindow}
+//                 style={{
+//                     position: "absolute",
+//                     bottom: "10px",
+//                     left: "95%",
+//                     transform: "translateX(-50%)",
+//                     width: "40px",  // 限制按鈕大小
+//                     height: "40px", 
+//                     padding: "0", // 移除預設 padding
+//                     fontSize: "24px", // 讓圖標看起來清晰
+//                     lineHeight: "1", // 確保內部沒有多餘空間
+//                     background: "rgba(255, 255, 255, 0.5)",
+//                     color: "black",
+//                     border: "none",
+//                     cursor: "pointer",
+//                     zIndex: 1000,
+//                     display: "flex", 
+//                     alignItems: "center",
+//                     justifyContent: "center",
+//                     borderRadius: "6px", // 讓按鈕有點圓角
+//                 }}
+//             >
+//               ⛶
+//             </button>
+//         </>
+//     );
+// };
+
+// export default VRScene;
 
 
 
@@ -145,6 +298,36 @@ export default VRScene;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//code2
 
 // import "aframe";
 // import { useEffect } from "react";
