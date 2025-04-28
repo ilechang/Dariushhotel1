@@ -8,7 +8,7 @@ import { BsChevronRight, BsInfoCircle } from "react-icons/bs"; // Chevron icon
 import { FaCheck } from "react-icons/fa"; // ✅ Checkmark icon
 import VRScene from "./VRScene";
 import ViewScene from "./ViewScene";
-
+import Footer from "./Footer";
 
 
 const menuItems = [
@@ -852,6 +852,7 @@ const RoomDetails = () => {
         borderRadius: "0.5rem",
         color: "#0C756E",
         fontWeight: 500,
+        whiteSpace: "nowrap",
         display: "flex",
         alignItems: "center",
         gap: "0.5rem",
@@ -864,8 +865,8 @@ const RoomDetails = () => {
 
 
             </Container>
-
-
+<br /><br /><br /><br /><br /><br />
+<Footer/>
 
         </div>
     );
