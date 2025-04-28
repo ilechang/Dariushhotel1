@@ -248,7 +248,7 @@ const RoomDetails = () => {
                                                 width: "160px",
                                                 height: "48px",
                                                 whiteSpace: "nowrap", // ✅ Make text stay in one line
-                                                color:"#1f1f1f"
+                                                color: "#1f1f1f"
                                             }}
                                             onClick={handleShowVR}
                                         >
@@ -262,7 +262,7 @@ const RoomDetails = () => {
                                                 width: "160px",
                                                 height: "48px",
                                                 whiteSpace: "nowrap", // ✅ Make text stay in one line
-                                                color:"#1f1f1f"
+                                                color: "#1f1f1f"
                                             }}
                                             onClick={handleShowView}
                                         >
@@ -296,8 +296,7 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "93%",
-                                            transform: "translateX(-50%)",
+                                            right: "10px", // ✅ 貼緊右上角
                                             width: "40px",
                                             height: "40px",
                                             background: "rgba(255, 255, 255, 0.5)",
@@ -309,8 +308,8 @@ const RoomDetails = () => {
                                             justifyContent: "center",
                                             cursor: "pointer",
                                             zIndex: 1000,
-                                            color:"#1f1f1f",
-                                            padding:"0"
+                                            color: "#1f1f1f",
+                                            // ✅ 注意這裡不要再寫 transform: translateX(-50%)
                                         }}
                                     >
                                         ×
@@ -331,11 +330,10 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "93%",
-                                            transform: "translateX(-50%)",
+                                            right: "10px", // ✅ 貼緊右上角
                                             width: "40px",
                                             height: "40px",
-                                            background: "rgba(255, 255,255, 0.5)",
+                                            background: "rgba(255, 255, 255, 0.5)",
                                             border: "none",
                                             borderRadius: "10px",
                                             fontSize: "24px",
@@ -344,8 +342,8 @@ const RoomDetails = () => {
                                             justifyContent: "center",
                                             cursor: "pointer",
                                             zIndex: 1000,
-                                            color:"#1f1f1f",
-                                            padding:"0"
+                                            color: "#1f1f1f",
+                                            // ✅ 注意這裡不要再寫 transform: translateX(-50%)
                                         }}
                                     >
                                         ×
