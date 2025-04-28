@@ -4,15 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const Footer = () => {
   return (
     <footer className="footer roboto p-5">
-  
+
       <div className="container">
-      <div className="col-lg-2 mb-4">
-            <img src="/logo.svg" alt="Logo" width="50" />
-          </div>
-          <br />
+        <div className="col-lg-2 mb-4">
+          <img src="/logo.png" alt="Logo" width="50" />
+        </div>
+        <br />
         <div className="row">
           {/* Left Column - Logo & Navigation */}
-          
+
 
           {/* Footer Links */}
           <div className="col-lg-8">

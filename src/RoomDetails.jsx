@@ -243,19 +243,19 @@ const RoomDetails = () => {
                                     />
                                     <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
                                         <button
-                                            className="border-0 bg-white rounded-pill shadow"
-                                            style={{ width: "180px", height: "48px" }}
+                                            className="border-0 bg-white rounded-3 shadow"
+                                            style={{ width: "150px", height: "48px" }}
                                             onClick={handleShowVR}
                                         >
-                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2 w-25" />
+                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-1 w-25" />
                                             In your space
                                         </button>
                                         <button
-                                            className="border-0 bg-white rounded-pill shadow"
-                                            style={{ width: "180px", height: "48px" }}
+                                            className="border-0 bg-white rounded-3 shadow"
+                                            style={{ width: "150px", height: "48px" }}
                                             onClick={handleShowView}
                                         >
-                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2 w-25" />
+                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-1 w-25" />
                                             Window view
                                         </button>
                                     </div>
@@ -284,13 +284,13 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "95%",
+                                            left: "92%",
                                             transform: "translateX(-50%)",
                                             width: "40px",
                                             height: "40px",
                                             background: "rgba(255, 255, 255, 0.5)",
                                             border: "none",
-                                            borderRadius: "6px",
+                                            borderRadius: "10px",
                                             fontSize: "24px",
                                             display: "flex",
                                             alignItems: "center",
@@ -317,13 +317,13 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "95%",
-                                            transform: "translateX(-50%)",
+                                            left: "90%",
+                                            transf10rm: "translateX(-50%)",
                                             width: "40px",
                                             height: "40px",
-                                            background: "rgba(55, 55, 55, 0.5)",
+                                            background: "rgba(255, 255,255, 0.5)",
                                             border: "none",
-                                            borderRadius: "6px",
+                                            borderRadius: "10px",
                                             fontSize: "24px",
                                             display: "flex",
                                             alignItems: "center",

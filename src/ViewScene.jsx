@@ -110,7 +110,7 @@ const ViewScene = ({ setShowView, style = {} }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: "6px",
+            borderRadius: "10px",
         }}
     >
         ⛶
