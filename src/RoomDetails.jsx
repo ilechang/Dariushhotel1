@@ -188,7 +188,7 @@ const RoomDetails = () => {
 
     return (
         <div>
-            <Container className="p-0 py-3 mt-5 roboto400 ">
+            <Container className="p-0 py-3 mt-5 roboto400 px-2 px-md-5 ">
                 <br />
                 <br />
                 {/* Top Row: Room Image & Rooms Section */}
