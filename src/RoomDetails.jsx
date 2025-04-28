@@ -309,6 +309,7 @@ const RoomDetails = () => {
                                             cursor: "pointer",
                                             zIndex: 1000,
                                             color: "#1f1f1f",
+                                            padding: "0",
                                             // ✅ 注意這裡不要再寫 transform: translateX(-50%)
                                         }}
                                     >
@@ -343,6 +344,7 @@ const RoomDetails = () => {
                                             cursor: "pointer",
                                             zIndex: 1000,
                                             color: "#1f1f1f",
+                                            padding: "0",
                                             // ✅ 注意這裡不要再寫 transform: translateX(-50%)
                                         }}
                                     >
