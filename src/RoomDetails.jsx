@@ -248,6 +248,7 @@ const RoomDetails = () => {
                                                 width: "160px",
                                                 height: "48px",
                                                 whiteSpace: "nowrap", // ✅ Make text stay in one line
+                                                color:"#1f1f1f"
                                             }}
                                             onClick={handleShowVR}
                                         >
@@ -261,6 +262,7 @@ const RoomDetails = () => {
                                                 width: "160px",
                                                 height: "48px",
                                                 whiteSpace: "nowrap", // ✅ Make text stay in one line
+                                                color:"#1f1f1f"
                                             }}
                                             onClick={handleShowView}
                                         >
@@ -307,6 +309,7 @@ const RoomDetails = () => {
                                             justifyContent: "center",
                                             cursor: "pointer",
                                             zIndex: 1000,
+                                            color:"#1f1f1f"
                                         }}
                                     >
                                         ×
@@ -327,7 +330,7 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "92%",
+                                            left: "90%",
                                             transf10rm: "translateX(-50%)",
                                             width: "40px",
                                             height: "40px",
@@ -340,6 +343,7 @@ const RoomDetails = () => {
                                             justifyContent: "center",
                                             cursor: "pointer",
                                             zIndex: 1000,
+                                            color:"#1f1f1f"
                                         }}
                                     >
                                         ×
