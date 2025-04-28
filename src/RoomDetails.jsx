@@ -10,6 +10,78 @@ import VRScene from "./VRScene";
 import ViewScene from "./ViewScene";
 
 
+
+const menuItems = [
+    {
+        img: "/adasi.png",
+        title: "Adasi",
+        desc: "Iranian lentil stew, served warm with flatbread and lemon, a comforting start to your breakfast."
+    },
+    {
+        img: "/sarsheer.png",
+        title: "Sarsheer",
+        desc: "Rich, creamy clotted cream, traditionally served with honey and warm bread, a decadent treat."
+    },
+    {
+        img: "/honey.png",
+        title: "Natural Honey",
+        desc: "Adds a touch of natural sweetness, perfectly pairing with warm bread or garnish the Sarsheer."
+    },
+    {
+        img: "/Barbari.png",
+        title: "Barbari",
+        desc: "A traditional Iranian flatbread, crisp on the outside, soft within, served warm for a refined, artisanal touch."
+    },
+    {
+        img: "/persian_tea.png",
+        title: "Persian Tea",
+        desc: "Deeply aromatic and served in delicate glassware, offers a soothing, refined sip to nurture you."
+    },
+    {
+        img: "/omelette.png",
+        title: "Omelette",
+        desc: "A savoury blend of eggs and spiced tomatoes, served warm—simple yet full of flavour."
+    },
+    {
+        img: "/cheese.png",
+        title: "Feta",
+        desc: "Creamy, tangy, and crumbly, perfect with fresh herbs, bread, and tea for a classic breakfast."
+    },
+    {
+        img: "/walnuts.png",
+        title: "Walnuts",
+        desc: "Rich and earthy, add the perfect crunch to your bread, cheese, and tomato-cucumber wrap. A timeless touch of flavour and tradition."
+    },
+    {
+        img: "/tomato_and_cucumber.png",
+        title: "Tomato & Cucumber",
+        desc: "Fresh tomato and cucumber slices, light and crisp—perfect with bread, cheese, and a warm cup of tea."
+    },
+    {
+        img: "/dates.png",
+        title: "Dates",
+        desc: "Naturally sweet and tender, offer a rich burst of flavour, an indulgent, wholesome treat."
+    },
+    {
+        img: "/jam.png",
+        title: "Jam",
+        desc: "Fragrant and fruity, made from seasonal ingredients, adds a delicate sweetness to bread for a refined breakfast delight."
+    },
+    {
+        img: "/butter.png",
+        title: "Butter",
+        desc: "Rich and creamy with a subtle tang, melts perfectly over warm bread, bringing a touch of tradition."
+    },
+];
+
+
+
+
+
+
+
+
+
 const roomDetails = [
     { icon: <BiBed size={24} className="me-3" />, title: "Bed Room", description: "1 bed room & meeting room" },
     { icon: <BiBuilding size={24} className="me-3" />, title: "Bed Type & Others", description: "Dabble bed, sofa, table & more" },
@@ -115,368 +187,442 @@ const RoomDetails = () => {
 
 
     return (
-        <Container className="p-0 py-3 mt-5 roboto400 ">
-            <br />
-            <br />
-            {/* Top Row: Room Image & Rooms Section */}
+        <div>
+            <Container className="p-0 py-3 mt-5 roboto400 ">
+                <br />
+                <br />
+                {/* Top Row: Room Image & Rooms Section */}
 
 
 
-            <Row className="w-100 m-0  mb-4 ">
-                {/* 左邊圖片或3D區塊 */}
-                {/* 右邊 Room details 卡片（小螢幕時放上面） */}
-                <Col
-                    xs={12}
-                    md={4}
-                    className="pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
-                >
-                    <div
-                        ref={cardRef}
-                        className="d-flex flex-column align-items-start ps-4"
-                        style={{ minHeight: "50vh" }}
+                <Row className="w-100 m-0  mb-4 ">
+                    {/* 左邊圖片或3D區塊 */}
+                    {/* 右邊 Room details 卡片（小螢幕時放上面） */}
+                    <Col
+                        xs={12}
+                        md={4}
+                        className="pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
                     >
-                        <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
-                        <p
-                            className="mt-5 lh-base"
-                            style={{ position: "relative", zIndex: 2 }}
+                        <div
+                            ref={cardRef}
+                            className="d-flex flex-column align-items-start ps-4"
+                            style={{ minHeight: "50vh" }}
                         >
-                           <b>Perspolis suite</b>, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
-                        </p>
-                    </div>
-                </Col>
+                            <img className="w-50 mt-4" src="/Suite.png" alt="Suite" />
+                            <p
+                                className="mt-5 lh-base"
+                                style={{ position: "relative", zIndex: 2 }}
+                            >
+                                <b>Perspolis suite</b>, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
+                            </p>
+                        </div>
+                    </Col>
 
-                {/* 左邊圖片或3D區塊 */}
-                <Col
-                    xs={12}
-                    md={8}
-                    className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
-                >
-                    <div id="scroll-anchor"></div>
-                    <div
-                        className="position-relative w-100 overflow-hidden rounded-4"
-                        style={{ height: leftHeight }}
+                    {/* 左邊圖片或3D區塊 */}
+                    <Col
+                        xs={12}
+                        md={8}
+                        className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
                     >
-                        {!showVR && !showView ? (
-                            <>
-                                <img
-                                    src="/roombig.jpg"
-                                    alt="Room"
-                                    className="w-100 h-100"
-                                    style={{ objectFit: "cover" }}
-                                />
-                                <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
-                                    <button
-                                        className="border-0 bg-white rounded-pill shadow"
-                                        style={{ width: "150px", height: "40px" }}
-                                        onClick={handleShowVR}
-                                    >
-                                        <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
-                                        See Room
-                                    </button>
-                                    <button
-                                        className="border-0 bg-white rounded-pill shadow"
-                                        style={{ width: "150px", height: "40px" }}
-                                        onClick={handleShowView}
-                                    >
-                                        <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
-                                        See View
-                                    </button>
-                                </div>
-                            </>
-                        ) : showVR ? (
-                            <>
-                                {loading && (
-                                    <div
-                                        style={{ top: "60%" }}
-                                        className="position-absolute start-50 translate-middle bg-white py-1 px-5 shadow"
-                                    >
-                                        <h4 className="mt-1">Loading...</h4>
+                        <div id="scroll-anchor"></div>
+                        <div
+                            className="position-relative w-100 overflow-hidden rounded-4"
+                            style={{ height: leftHeight }}
+                        >
+                            {!showVR && !showView ? (
+                                <>
+                                    <img
+                                        src="/roombig.jpg"
+                                        alt="Room"
+                                        className="w-100 h-100"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                    <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
+                                        <button
+                                            className="border-0 bg-white rounded-pill shadow"
+                                            style={{ width: "150px", height: "40px" }}
+                                            onClick={handleShowVR}
+                                        >
+                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
+                                            See Room
+                                        </button>
+                                        <button
+                                            className="border-0 bg-white rounded-pill shadow"
+                                            style={{ width: "150px", height: "40px" }}
+                                            onClick={handleShowView}
+                                        >
+                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
+                                            See View
+                                        </button>
                                     </div>
-                                )}
-                                <VRScene
-                                    setLoading={setLoading}
-                                    setShowVR={setShowVR}
-                                    style={{ height: leftHeight }}
-                                />
-                                <button
-                                    onClick={() => {
-                                        setShowVR(false);
-                                        setShowView(false);
-                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
-                                    }}
-                                    className="position-absolute"
-                                    style={{
-                                        top: "10px",
-                                        left: "95%",
-                                        transform: "translateX(-50%)",
-                                        width: "40px",
-                                        height: "40px",
-                                        background: "rgba(255, 255, 255, 0.5)",
-                                        border: "none",
-                                        borderRadius: "6px",
-                                        fontSize: "24px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        cursor: "pointer",
-                                        zIndex: 1000,
-                                    }}
-                                >
-                                    ✖
-                                </button>
-                            </>
-                        ) : (
-                            <>
-                                <ViewScene
-                                    setShowView={setShowView}
-                                    style={{ height: leftHeight }}
-                                />
-                                <button
-                                    onClick={() => {
-                                        setShowVR(false);
-                                        setShowView(false);
-                                        document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
-                                    }}
-                                    className="position-absolute"
-                                    style={{
-                                        top: "10px",
-                                        left: "95%",
-                                        transform: "translateX(-50%)",
-                                        width: "40px",
-                                        height: "40px",
-                                        background: "rgba(55, 55, 55, 0.5)",
-                                        border: "none",
-                                        borderRadius: "6px",
-                                        fontSize: "24px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        cursor: "pointer",
-                                        zIndex: 1000,
-                                    }}
-                                >
-                                    ✖
-                                </button>
-                            </>
-                        )}
+                                </>
+                            ) : showVR ? (
+                                <>
+                                    {loading && (
+                                        <div
+                                            style={{ top: "60%" }}
+                                            className="position-absolute start-50 translate-middle bg-white py-1 px-5 shadow"
+                                        >
+                                            <h4 className="mt-1">Loading...</h4>
+                                        </div>
+                                    )}
+                                    <VRScene
+                                        setLoading={setLoading}
+                                        setShowVR={setShowVR}
+                                        style={{ height: leftHeight }}
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            setShowVR(false);
+                                            setShowView(false);
+                                            document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+                                        }}
+                                        className="position-absolute"
+                                        style={{
+                                            top: "10px",
+                                            left: "95%",
+                                            transform: "translateX(-50%)",
+                                            width: "40px",
+                                            height: "40px",
+                                            background: "rgba(255, 255, 255, 0.5)",
+                                            border: "none",
+                                            borderRadius: "6px",
+                                            fontSize: "24px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            cursor: "pointer",
+                                            zIndex: 1000,
+                                        }}
+                                    >
+                                        ✖
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <ViewScene
+                                        setShowView={setShowView}
+                                        style={{ height: leftHeight }}
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            setShowVR(false);
+                                            setShowView(false);
+                                            document.getElementById("scroll-anchor")?.scrollIntoView({ behavior: "smooth" });
+                                        }}
+                                        className="position-absolute"
+                                        style={{
+                                            top: "10px",
+                                            left: "95%",
+                                            transform: "translateX(-50%)",
+                                            width: "40px",
+                                            height: "40px",
+                                            background: "rgba(55, 55, 55, 0.5)",
+                                            border: "none",
+                                            borderRadius: "6px",
+                                            fontSize: "24px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            cursor: "pointer",
+                                            zIndex: 1000,
+                                        }}
+                                    >
+                                        ✖
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </Col>
+                </Row>
+
+
+
+
+
+
+
+                <br /><br />
+
+
+                <br />
+
+
+
+
+
+
+                <Row className="w-100 m-0 mb-4 align-items-start">
+                    {/* 左邊圖片 taress.png */}
+                    <Col
+                        xs={12}
+                        md={8}
+                        className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
+                    >
+                        <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: "auto" }}>
+                            <img
+                                src="/taress.png"
+                                alt="Terrace"
+                                className="img-fluid"
+                                style={{
+                                    width: "100%",
+                                    height: "auto",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        </div>
+                    </Col>
+
+                    {/* 右邊圖片 security.png + 文字 */}
+                    <Col
+                        xs={12}
+                        md={4}
+                        className="d-flex flex-column align-items-start pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
+                    >
+                        <div className="d-flex flex-column align-items-start ps-4 w-100">
+                            {/* 標題圖 security.png */}
+                            <img
+                                src="/security.png"
+                                alt="Security Title"
+                                className="img-fluid"
+                                style={{
+                                    width: "70%",     // 可以自己調整大小
+                                    height: "auto",
+                                    objectFit: "contain",
+                                }}
+                            />
+                            {/* 下面文字 */}
+                            <p
+                                className="mt-4 lh-base"
+                                style={{ position: "relative", zIndex: 2 }}
+                            >
+                                A private terrace with a serene sunken tub, offering panoramic views of the Persian Gulf.
+                            </p>
+                        </div>
+                    </Col>
+                </Row>
+
+
+
+
+                <br /><br />
+
+                <br />
+
+
+
+
+
+                <Row className="w-100 m-0 mb-4 align-items-start">
+                    {/* 左邊圖片 roomeat.png */}
+                    <Col
+                        xs={12}
+                        md={8}
+                        className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
+                    >
+                        <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: "auto" }}>
+                            <img
+                                src="/roomeat.png"
+                                alt="Room Eat"
+                                className="img-fluid"
+                                style={{
+                                    width: "100%",
+                                    height: "auto",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        </div>
+                    </Col>
+
+                    {/* 右邊圖片 and.png + 文字 */}
+                    <Col
+                        xs={12}
+                        md={4}
+                        className="d-flex flex-column align-items-start pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
+                    >
+                        <div className="d-flex flex-column align-items-start ps-4 w-100">
+                            {/* 標題圖 and.png */}
+                            <img
+                                src="/and.png"
+                                alt="And Title"
+                                className="img-fluid"
+                                style={{
+                                    width: "70%",     // 可以自己調整大小
+                                    height: "auto",
+                                    objectFit: "contain",
+                                }}
+                            />
+                            {/* 下面文字 */}
+                            <p
+                                className="mt-4 lh-base"
+                                style={{ position: "relative", zIndex: 2 }}
+                            >
+                                This expansive retreat features a king-sized canopy bed draped in fine linens, a marble-clad bathroom with a deep soaking tub.
+                            </p>
+                        </div>
+                    </Col>
+                </Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <br /><br />
+
+                <br />
+
+
+
+
+
+
+
+
+                <Row className="w-100 m-0 mb-4 align-items-start">
+                    {/* 左邊圖片 break.png */}
+                    <Col
+                        xs={12}
+                        md={8}
+                        className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
+                    >
+                        <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: "auto" }}>
+                            <img
+                                src="/break.png"
+                                alt="Break"
+                                className="img-fluid"
+                                style={{
+                                    width: "100%",
+                                    height: "auto",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        </div>
+                    </Col>
+
+                    {/* 右邊圖片 nut.png + 文字 */}
+                    <Col
+                        xs={12}
+                        md={4}
+                        className="d-flex flex-column align-items-start pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
+                    >
+                        <div className="d-flex flex-column align-items-start ps-4 w-100">
+                            {/* 標題圖 nut.png */}
+                            <img
+                                src="/nut.png"
+                                alt="Nut Title"
+                                className="img-fluid"
+                                style={{
+                                    width: "70%",     // 可以自己調整大小
+                                    height: "auto",
+                                    objectFit: "contain",
+                                }}
+                            />
+                            {/* 下面文字 */}
+                            <p
+                                className="mt-4 lh-base"
+                                style={{ position: "relative", zIndex: 2 }}
+                            >
+                                <b>Perspolis suite</b>, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
+                            </p>
+                        </div>
+                    </Col>
+                </Row>
+
+
+                <br /><br /><br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </Container>
+            <Container fluid className=" roboto400 " style={{
+                margin: "0",
+                padding: "0",
+            }}>
+                {/* 標題區 */}
+                <div className="px-5 d-flex align-items-center mb-4">
+                    <img src="/feel.png" alt="Feel" style={{ height: "90px", objectFit: "contain" }} />
+                    <h2
+                        className="ms-4 "
+                        style={{ color: "#0C756E", fontWeight: 300, fontSize: "90px" }}
+                    >
+                        Nurtured
+                    </h2>
+                </div>
+                <div className="mb-5">
+                    <h3 className="mb-5 px-5" style={{ fontWeight: 400 }}>Menu</h3>
+                </div>
+                {/* 跑馬燈區 */}
+                <div style={{
+                    overflow: "hidden",
+                    position: "relative",
+                    width: "100%",
+                }}>
+                    <div
+                        style={{
+                            display: "flex",
+                            animation: "scroll-marquee 120s linear infinite",
+                            width: "fit-content",
+                        }}
+                    >
+                        {/* 兩份卡片，一份接一份 */}
+                        {[...menuItems, ...menuItems].map((item, index) => (
+                            <div key={index} style={{ flex: "0 0 auto", width: "300px", marginRight: "4rem" }}>
+                                <div className="shadow" style={{ aspectRatio: "1/1", overflow: "hidden" }}>
+                                    <img
+                                        src={item.img}
+                                        alt={item.title}
+                                        className="img-fluid w-100 h-100"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
+                                <h2 style={{ color: "#F9A825", fontWeight: 300, fontSize: "50px" }} className="mt-3 ">
+                                    {item.title}
+                                </h2>
+                                <p className="text-muted " style={{ lineHeight: "1.4", fontWeight: 400 }}>
+                                    {item.desc}
+                                </p>
+                            </div>
+                        ))}
                     </div>
-                </Col>
-            </Row>
-
-
-
-
-
-
-
-            <br /><br />
-
-
-            <br />
-
-
-
-
-
-
-            <Row className="w-100 m-0 mb-4 align-items-start">
-                {/* 左邊圖片 taress.png */}
-                <Col
-                    xs={12}
-                    md={8}
-                    className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
-                >
-                    <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: "auto" }}>
-                        <img
-                            src="/taress.png"
-                            alt="Terrace"
-                            className="img-fluid"
-                            style={{
-                                width: "100%",
-                                height: "auto",
-                                objectFit: "contain",
-                            }}
-                        />
-                    </div>
-                </Col>
-
-                {/* 右邊圖片 security.png + 文字 */}
-                <Col
-                    xs={12}
-                    md={4}
-                    className="d-flex flex-column align-items-start pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
-                >
-                    <div className="d-flex flex-column align-items-start ps-4 w-100">
-                        {/* 標題圖 security.png */}
-                        <img
-                            src="/security.png"
-                            alt="Security Title"
-                            className="img-fluid"
-                            style={{
-                                width: "70%",     // 可以自己調整大小
-                                height: "auto",
-                                objectFit: "contain",
-                            }}
-                        />
-                        {/* 下面文字 */}
-                        <p
-                            className="mt-4 lh-base"
-                            style={{ position: "relative", zIndex: 2 }}
-                        >
-                            A private terrace with a serene sunken tub, offering panoramic views of the Persian Gulf.
-                        </p>
-                    </div>
-                </Col>
-            </Row>
-
-
-
-
-            <br /><br />
-
-            <br />
-
-
-
-
-
-            <Row className="w-100 m-0 mb-4 align-items-start">
-                {/* 左邊圖片 roomeat.png */}
-                <Col
-                    xs={12}
-                    md={8}
-                    className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
-                >
-                    <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: "auto" }}>
-                        <img
-                            src="/roomeat.png"
-                            alt="Room Eat"
-                            className="img-fluid"
-                            style={{
-                                width: "100%",
-                                height: "auto",
-                                objectFit: "contain",
-                            }}
-                        />
-                    </div>
-                </Col>
-
-                {/* 右邊圖片 and.png + 文字 */}
-                <Col
-                    xs={12}
-                    md={4}
-                    className="d-flex flex-column align-items-start pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
-                >
-                    <div className="d-flex flex-column align-items-start ps-4 w-100">
-                        {/* 標題圖 and.png */}
-                        <img
-                            src="/and.png"
-                            alt="And Title"
-                            className="img-fluid"
-                            style={{
-                                width: "70%",     // 可以自己調整大小
-                                height: "auto",
-                                objectFit: "contain",
-                            }}
-                        />
-                        {/* 下面文字 */}
-                        <p
-                            className="mt-4 lh-base"
-                            style={{ position: "relative", zIndex: 2 }}
-                        >
-                            This expansive retreat features a king-sized canopy bed draped in fine linens, a marble-clad bathroom with a deep soaking tub.
-                        </p>
-                    </div>
-                </Col>
-            </Row>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <br /><br />
-
-<br />
-
-
-
-
-
-
-
-
-<Row className="w-100 m-0 mb-4 align-items-start">
-  {/* 左邊圖片 break.png */}
-  <Col
-    xs={12}
-    md={8}
-    className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
-  >
-    <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: "auto" }}>
-      <img
-        src="/break.png"
-        alt="Break"
-        className="img-fluid"
-        style={{
-          width: "100%",
-          height: "auto",
-          objectFit: "contain",
-        }}
-      />
-    </div>
-  </Col>
-
-  {/* 右邊圖片 nut.png + 文字 */}
-  <Col
-    xs={12}
-    md={4}
-    className="d-flex flex-column align-items-start pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
-  >
-    <div className="d-flex flex-column align-items-start ps-4 w-100">
-      {/* 標題圖 nut.png */}
-      <img
-        src="/nut.png"
-        alt="Nut Title"
-        className="img-fluid"
-        style={{
-          width: "70%",     // 可以自己調整大小
-          height: "auto",
-          objectFit: "contain",
-        }}
-      />
-      {/* 下面文字 */}
-      <p
-        className="mt-4 lh-base"
-        style={{ position: "relative", zIndex: 2 }}
-      >
-        <b>Perspolis suite</b>, discover timeless elegance and Persian grandeur in Perspolis suite. A sanctuary, crafted for comfort, designed for distinction. Immerse yourself in the room by clicking on “in your space”.
-      </p>
-    </div>
-  </Col>
-</Row>
-
-
-
-
-
-
-
-
-
-
-
-
-        </Container>
+                </div>
+
+                {/* 動畫 Keyframes */}
+                <style>{`
+@keyframes scroll-marquee {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+`}</style>
+            </Container>
+        </div>
     );
 };
 
