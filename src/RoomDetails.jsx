@@ -244,7 +244,7 @@ const RoomDetails = () => {
                                     <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
                                         <button
                                             className="border-0 bg-white rounded-3 shadow"
-                                            style={{ width: "150px", height: "48px" }}
+                                            style={{ width: "155px", height: "48px" }}
                                             onClick={handleShowVR}
                                         >
                                             <img src="/vr.png" alt="VR Icon" className="mb-2 me-1 w-25" />
@@ -252,7 +252,7 @@ const RoomDetails = () => {
                                         </button>
                                         <button
                                             className="border-0 bg-white rounded-3 shadow"
-                                            style={{ width: "150px", height: "48px" }}
+                                            style={{ width: "155px", height: "48px" }}
                                             onClick={handleShowView}
                                         >
                                             <img src="/vr.png" alt="VR Icon" className="mb-2 me-1 w-25" />
@@ -317,7 +317,7 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "90%",
+                                            left: "91%",
                                             transf10rm: "translateX(-50%)",
                                             width: "40px",
                                             height: "40px",
