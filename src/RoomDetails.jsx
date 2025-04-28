@@ -244,20 +244,30 @@ const RoomDetails = () => {
                                     <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
                                         <button
                                             className="border-0 bg-white rounded-3 shadow"
-                                            style={{ width: "155px", height: "48px" }}
+                                            style={{
+                                                width: "160px",
+                                                height: "48px",
+                                                whiteSpace: "nowrap", // ✅ Make text stay in one line
+                                            }}
                                             onClick={handleShowVR}
                                         >
                                             <img src="/vr.png" alt="VR Icon" className="mb-2 me-1 w-25" />
                                             In your space
                                         </button>
+
                                         <button
                                             className="border-0 bg-white rounded-3 shadow"
-                                            style={{ width: "155px", height: "48px" }}
+                                            style={{
+                                                width: "160px",
+                                                height: "48px",
+                                                whiteSpace: "nowrap", // ✅ Make text stay in one line
+                                            }}
                                             onClick={handleShowView}
                                         >
                                             <img src="/vr.png" alt="VR Icon" className="mb-2 me-1 w-25" />
                                             Window view
                                         </button>
+
                                     </div>
                                 </>
                             ) : showVR ? (
@@ -299,7 +309,7 @@ const RoomDetails = () => {
                                             zIndex: 1000,
                                         }}
                                     >
-                                        ✖
+                                        ×
                                     </button>
                                 </>
                             ) : (
@@ -317,7 +327,7 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "91%",
+                                            left: "92%",
                                             transf10rm: "translateX(-50%)",
                                             width: "40px",
                                             height: "40px",
@@ -332,7 +342,7 @@ const RoomDetails = () => {
                                             zIndex: 1000,
                                         }}
                                     >
-                                        ✖
+                                        ×
                                     </button>
                                 </>
                             )}
@@ -706,167 +716,167 @@ const RoomDetails = () => {
                             marginLeft: "1rem",
                             marginTop: "1.5rem",
                         }}
-                      
+
                     />
                 </div>
                 <Row className="align-items-end g-4 px-3 mt-2">
-  {/* 人數選擇 */}
-  <Col xs={12} md={3}>
-    <Form.Group className="position-relative">
-      <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
-        Number of Adult / Children
-      </Form.Label>
-      <Form.Select
-        className="border-0 border-bottom rounded-0"
-        style={{
-          backgroundColor: "#ebece7",
-          color: "#0C756E",
-          fontWeight: 400,
-          fontSize: "1.2rem",
-          paddingLeft: 0,
-          paddingRight: 0,
-          outline: "none",
-          boxShadow: "none",
-        }}
-      >
-        <option value="">Select</option>
-        <option>1 Person</option>
-        <option>2 People</option>
-        <option>3 People</option>
-        <option>4 People</option>
-      </Form.Select>
+                    {/* 人數選擇 */}
+                    <Col xs={12} md={3}>
+                        <Form.Group className="position-relative">
+                            <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
+                                Number of Adult / Children
+                            </Form.Label>
+                            <Form.Select
+                                className="border-0 border-bottom rounded-0"
+                                style={{
+                                    backgroundColor: "#ebece7",
+                                    color: "#0C756E",
+                                    fontWeight: 400,
+                                    fontSize: "1.2rem",
+                                    paddingLeft: 0,
+                                    paddingRight: 0,
+                                    outline: "none",
+                                    boxShadow: "none",
+                                }}
+                            >
+                                <option value="">Select</option>
+                                <option>1 Person</option>
+                                <option>2 People</option>
+                                <option>3 People</option>
+                                <option>4 People</option>
+                            </Form.Select>
 
-      {/* 🔥 自己加一條假的深綠色線 */}
-      <div
-        style={{
-          height: "1px",
-          backgroundColor: "#0C756E",
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-          right: "0",
-          pointerEvents: "none", // 不影響點擊
-        }}
-      ></div>
-    </Form.Group>
-  </Col>
+                            {/* 🔥 自己加一條假的深綠色線 */}
+                            <div
+                                style={{
+                                    height: "1px",
+                                    backgroundColor: "#0C756E",
+                                    position: "absolute",
+                                    bottom: "0",
+                                    left: "0",
+                                    right: "0",
+                                    pointerEvents: "none", // 不影響點擊
+                                }}
+                            ></div>
+                        </Form.Group>
+                    </Col>
 
-  {/* 日期選擇 */}
-  <Col xs={12} md={3}>
-    <Form.Group className="position-relative">
-      <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
-        Date
-      </Form.Label>
-      <div
-        style={{
-          backgroundColor: "#ebece7",
-          fontSize: "1.2rem",
-          fontWeight: 400,
-          color: "#0C756E",
-          paddingLeft: "0",
-          cursor: "pointer",
-        }}
-        onClick={() => setShowCalendar(prev => !prev)}
-      >
-        {date instanceof Date
-          ? `${(date.getMonth() + 1).toString().padStart(2, "0")}/${date
-              .getDate()
-              .toString()
-              .padStart(2, "0")}/${date.getFullYear()}`
-          : "Select Date"}
-      </div>
+                    {/* 日期選擇 */}
+                    <Col xs={12} md={3}>
+                        <Form.Group className="position-relative">
+                            <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
+                                Date
+                            </Form.Label>
+                            <div
+                                style={{
+                                    backgroundColor: "#ebece7",
+                                    fontSize: "1.2rem",
+                                    fontWeight: 400,
+                                    color: "#0C756E",
+                                    paddingLeft: "0",
+                                    cursor: "pointer",
+                                }}
+                                onClick={() => setShowCalendar(prev => !prev)}
+                            >
+                                {date instanceof Date
+                                    ? `${(date.getMonth() + 1).toString().padStart(2, "0")}/${date
+                                        .getDate()
+                                        .toString()
+                                        .padStart(2, "0")}/${date.getFullYear()}`
+                                    : "Select Date"}
+                            </div>
 
-      {showCalendar && (
-        <Calendar
-          onChange={(selectedDate) => {
-            setDate(selectedDate);
-            setShowCalendar(false);
-          }}
-          value={date}
-        />
-      )}
+                            {showCalendar && (
+                                <Calendar
+                                    onChange={(selectedDate) => {
+                                        setDate(selectedDate);
+                                        setShowCalendar(false);
+                                    }}
+                                    value={date}
+                                />
+                            )}
 
-      {/* 🔥 一樣加假的底線 */}
-      <div
-        style={{
-          height: "1px",
-          backgroundColor: "#0C756E",
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-          right: "0",
-          pointerEvents: "none",
-        }}
-      ></div>
-    </Form.Group>
-  </Col>
+                            {/* 🔥 一樣加假的底線 */}
+                            <div
+                                style={{
+                                    height: "1px",
+                                    backgroundColor: "#0C756E",
+                                    position: "absolute",
+                                    bottom: "0",
+                                    left: "0",
+                                    right: "0",
+                                    pointerEvents: "none",
+                                }}
+                            ></div>
+                        </Form.Group>
+                    </Col>
 
-  {/* 出發地 */}
-  <Col xs={12} md={3}>
-    <Form.Group className="position-relative">
-      <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
-        From / Departure
-      </Form.Label>
-      <Form.Select
-        className="border-0 border-bottom rounded-0"
-        style={{
-          backgroundColor: "#ebece7",
-          color: "#0C756E",
-          fontWeight: 400,
-          fontSize: "1.2rem",
-          paddingLeft: 0,
-          paddingRight: 0,
-          outline: "none",
-          boxShadow: "none",
-        }}
-      >
-        <option value="">Select</option>
-        <option>Toronto - YYZ</option>
-        <option>Toronto - YTZ</option>
-        <option>Toronto (any)</option>
-        <option>Other...</option>
-      </Form.Select>
+                    {/* 出發地 */}
+                    <Col xs={12} md={3}>
+                        <Form.Group className="position-relative">
+                            <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
+                                From / Departure
+                            </Form.Label>
+                            <Form.Select
+                                className="border-0 border-bottom rounded-0"
+                                style={{
+                                    backgroundColor: "#ebece7",
+                                    color: "#0C756E",
+                                    fontWeight: 400,
+                                    fontSize: "1.2rem",
+                                    paddingLeft: 0,
+                                    paddingRight: 0,
+                                    outline: "none",
+                                    boxShadow: "none",
+                                }}
+                            >
+                                <option value="">Select</option>
+                                <option>Toronto - YYZ</option>
+                                <option>Toronto - YTZ</option>
+                                <option>Toronto (any)</option>
+                                <option>Other...</option>
+                            </Form.Select>
 
-      {/* 🔥 一樣加假的底線 */}
-      <div
-        style={{
-          height: "1px",
-          backgroundColor: "#0C756E",
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-          right: "0",
-          pointerEvents: "none",
-        }}
-      ></div>
-    </Form.Group>
-  </Col>
+                            {/* 🔥 一樣加假的底線 */}
+                            <div
+                                style={{
+                                    height: "1px",
+                                    backgroundColor: "#0C756E",
+                                    position: "absolute",
+                                    bottom: "0",
+                                    left: "0",
+                                    right: "0",
+                                    pointerEvents: "none",
+                                }}
+                            ></div>
+                        </Form.Group>
+                    </Col>
 
-  {/* 按鈕 */}
-  <Col xs={12} md={3} className="text-md-end">
-    <button
-      style={{
-        border: "1px solid #0C756E",
-        background: "transparent",
-        padding: "0rem 2.5rem",
-        borderRadius: "0.5rem",
-        color: "#0C756E",
-        fontWeight: 500,
-        whiteSpace: "nowrap",
-        display: "flex",
-        alignItems: "center",
-        gap: "0.5rem",
-      }}
-    >
-      view booking →
-    </button>
-  </Col>
-</Row>
+                    {/* 按鈕 */}
+                    <Col xs={12} md={3} className="text-md-end">
+                        <button
+                            style={{
+                                border: "1px solid #0C756E",
+                                background: "transparent",
+                                padding: "0rem 2.5rem",
+                                borderRadius: "0.5rem",
+                                color: "#0C756E",
+                                fontWeight: 500,
+                                whiteSpace: "nowrap",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                            }}
+                        >
+                            view booking →
+                        </button>
+                    </Col>
+                </Row>
 
 
             </Container>
-<br /><br /><br /><br /><br /><br />
-<Footer/>
+            <br /><br /><br /><br /><br /><br />
+            <Footer />
 
         </div>
     );
