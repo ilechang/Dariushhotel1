@@ -562,66 +562,121 @@ const RoomDetails = () => {
 
 
             </Container>
-            <Container fluid className=" roboto400 " style={{
-                margin: "0",
-                padding: "0",
-            }}>
-                {/* 標題區 */}
-                <div className="px-5 d-flex align-items-center mb-4">
-                    <img src="/feel.png" alt="Feel" style={{ height: "90px", objectFit: "contain" }} />
-                    <h2
-                        className="ms-4 "
-                        style={{ color: "#0C756E", fontWeight: 300, fontSize: "90px" }}
-                    >
-                        Nurtured
-                    </h2>
-                </div>
-                <div className="mb-5">
-                    <h3 className="mb-5 px-5" style={{ fontWeight: 400 }}>Menu</h3>
-                </div>
-                {/* 跑馬燈區 */}
-                <div style={{
-                    overflow: "hidden",
-                    position: "relative",
-                    width: "100%",
-                }}>
-                    <div
-                        style={{
-                            display: "flex",
-                            animation: "scroll-marquee 120s linear infinite",
-                            width: "fit-content",
-                        }}
-                    >
-                        {/* 兩份卡片，一份接一份 */}
-                        {[...menuItems, ...menuItems].map((item, index) => (
-                            <div key={index} style={{ flex: "0 0 auto", width: "280px", marginRight: "4rem" }}>
-                                <div className="shadow" style={{ aspectRatio: "1/1", overflow: "hidden" }}>
-                                    <img
-                                        src={item.img}
-                                        alt={item.title}
-                                        className="img-fluid w-100 h-100"
-                                        style={{ objectFit: "cover" }}
-                                    />
-                                </div>
-                                <h2 style={{ color: "#F9A825", fontWeight: 300, fontSize: "50px" }} className="mt-3 ">
-                                    {item.title}
-                                </h2>
-                                <p className="text-muted " style={{ lineHeight: "1.4", fontWeight: 400 }}>
-                                    {item.desc}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
 
-                {/* 動畫 Keyframes */}
-                <style>{`
-@keyframes scroll-marquee {
-0% { transform: translateX(0); }
-100% { transform: translateX(-50%); }
-}
-`}</style>
-            </Container>
+
+
+
+
+
+            <Container
+  fluid
+  className="roboto400"
+  style={{
+    margin: "0",
+    padding: "0",
+  }}
+>
+  {/* 標題區 */}
+  <div
+    className="px-5 d-flex align-items-center mb-4 flex-wrap"
+    style={{ rowGap: "1rem" }}
+  >
+    <img
+      src="/feel.png"
+      className="me-4"
+      alt="Feel"
+      style={{
+        height: "90px",
+        objectFit: "contain",
+      }}
+    />
+    <h2
+      
+      style={{
+        color: "#0C756E",
+        fontWeight: 300,
+        fontSize: "70px",
+        whiteSpace: "nowrap", // 保持一行，避免亂換行
+      }}
+    >
+      Nurtured
+    </h2>
+  </div>
+
+  {/* Menu標題 */}
+  <div className="mb-5">
+    <h3 className="mb-5 px-5" style={{ fontWeight: 400 }}>
+      Menu
+    </h3>
+  </div>
+
+  {/* 跑馬燈區 */}
+  <div
+    style={{
+      overflow: "hidden",
+      position: "relative",
+      width: "100%",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        animation: "scroll-marquee 120s linear infinite",
+        width: "fit-content",
+      }}
+    >
+      {[...menuItems, ...menuItems].map((item, index) => (
+        <div
+          key={index}
+          style={{
+            flex: "0 0 auto",
+            width: "140px",        // ✅ 小螢幕版改小
+            marginRight: "2rem",   // ✅ 小間距
+          }}
+        >
+          <div
+            className="shadow"
+            style={{
+              aspectRatio: "1/1",
+              overflow: "hidden",
+            }}
+          >
+            <img
+              src={item.img}
+              alt={item.title}
+              className="img-fluid w-100 h-100"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <h2
+            style={{
+              color: "#F9A825",
+              fontWeight: 300,
+              fontSize: "24px",
+            }}
+            className="mt-3 text-center"
+          >
+            {item.title}
+          </h2>
+          <p
+            className="text-muted text-center"
+            style={{ lineHeight: "1.4", fontWeight: 400, fontSize: "14px" }}
+          >
+            {item.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* 動畫 Keyframes */}
+  <style>{`
+    @keyframes scroll-marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  `}</style>
+</Container>
         </div>
     );
 };
