@@ -309,7 +309,8 @@ const RoomDetails = () => {
                                             justifyContent: "center",
                                             cursor: "pointer",
                                             zIndex: 1000,
-                                            color:"#1f1f1f"
+                                            color:"#1f1f1f",
+                                            padding:"0"
                                         }}
                                     >
                                         ×
@@ -330,8 +331,8 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "87%",
-                                            transf10rm: "translateX(-50%)",
+                                            left: "92%",
+                                            transform: "translateX(-50%)",
                                             width: "40px",
                                             height: "40px",
                                             background: "rgba(255, 255,255, 0.5)",
@@ -343,7 +344,8 @@ const RoomDetails = () => {
                                             justifyContent: "center",
                                             cursor: "pointer",
                                             zIndex: 1000,
-                                            color:"#1f1f1f"
+                                            color:"#1f1f1f",
+                                            padding:"0"
                                         }}
                                     >
                                         ×
