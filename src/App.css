@@ -7,7 +7,7 @@
 
 
 body {
-  background-color: #fff1de;
+  background-color: #ebece7;
   font-family: "serif";
 }
 
@@ -215,7 +215,7 @@ a:hover {
 
 /* ========== 全局設定 ========== */
 .custom-calendar {
-  background-color: #fff1de !important;
+  background-color: ebece7 !important;
   border: none !important;
   width: 100% !important;
   text-align: center;
@@ -229,7 +229,7 @@ a:hover {
 
 /* ========== 月份標題（April 2025） ========== */
 .custom-calendar .react-calendar__navigation {
-  background-color: #fff1de !important;
+  background-color: ebece7 !important;
   margin-bottom: 2px !important;
   padding: 2px 0 !important;
 }
@@ -270,7 +270,7 @@ a:hover {
 .custom-calendar .react-calendar__tile {
   font-size: 12px;
   text-align: center;
-  background-color: #fff1de !important;
+  background-color: ebece7 !important;
   color: rgb(0, 0, 0) !important;
   white-space: nowrap;
   padding: 2px !important;

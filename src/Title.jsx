@@ -30,7 +30,7 @@ const Title = () => {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top libre-caslon-text-regular" style={{ background: "#fff1de" }}>
+    <nav className="navbar navbar-expand-lg fixed-top libre-caslon-text-regular" style={{ background: "#ebece7" }}>
       <div className="container-fluid mx-5 mt-3">
         {/* Logo */}
         <a className="navbar-brand" href="/">

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Import default calendar styles
-import { Container, Row, Col, Button, ListGroup, Card } from "react-bootstrap";
+import { Container, Row, Col, Button, ListGroup, Card, Form } from "react-bootstrap";
 import { BiBed, BiBuilding, BiTv, BiBath, BiAccessibility, BiDish } from "react-icons/bi"; // Serious icons
 import { BsChevronRight, BsInfoCircle } from "react-icons/bs"; // Chevron icon
 import { FaCheck } from "react-icons/fa"; // ✅ Checkmark icon
@@ -112,6 +112,7 @@ const bookingOptions = [
 const RoomDetails = () => {
     const [selectedRange, setSelectedRange] = useState([]); // 存儲選取的日期範圍
     const [selectedOption, setSelectedOption] = useState("flight");
+    const [date, setDate] = useState(new Date());
 
     // 選擇日期範圍
     const handleDateClick = (date) => {
@@ -185,7 +186,10 @@ const RoomDetails = () => {
     }, []);
 
 
+    const [selectedPeople, setSelectedPeople] = useState(""); // ✅ 人數
+    const [selectedDeparture, setSelectedDeparture] = useState(""); // ✅ 出發地
 
+    const [showCalendar, setShowCalendar] = useState(false); // ✅ 控制日曆開關
     return (
         <div>
             <Container className="p-0 py-3 mt-5 roboto400 px-2 px-md-5 ">
@@ -569,114 +573,300 @@ const RoomDetails = () => {
 
 
             <Container
-  fluid
-  className="roboto400"
-  style={{
-    margin: "0",
-    padding: "0",
-  }}
->
-  {/* 標題區 */}
-  <div
-    className="px-5 d-flex align-items-center mb-4 flex-wrap"
-    style={{ rowGap: "1rem" }}
-  >
-    <img
-      src="/feel.png"
-      className="me-4"
-      alt="Feel"
-      style={{
-        height: "90px",
-        objectFit: "contain",
-      }}
-    />
-    <h2
-      
-      style={{
-        color: "#0C756E",
-        fontWeight: 300,
-        fontSize: "70px",
-        whiteSpace: "nowrap", // 保持一行，避免亂換行
-      }}
-    >
-      Nurtured
-    </h2>
-  </div>
+                fluid
+                className="roboto400"
+                style={{
+                    margin: "0",
+                    padding: "0",
+                }}
+            >
+                {/* 標題區 */}
+                <div
+                    className="px-5 d-flex align-items-center mb-4 flex-wrap"
+                    style={{ rowGap: "1rem" }}
+                >
+                    <img
+                        src="/feel.png"
+                        className="me-4"
+                        alt="Feel"
+                        style={{
+                            height: "90px",
+                            objectFit: "contain",
+                        }}
+                    />
+                    <h2
 
-  {/* Menu標題 */}
-  <div className="mb-5">
-    <h3 className="mb-5 px-5" style={{ fontWeight: 400 }}>
-      Menu
-    </h3>
-  </div>
+                        style={{
+                            color: "#0C756E",
+                            fontWeight: 300,
+                            fontSize: "70px",
+                            whiteSpace: "nowrap", // 保持一行，避免亂換行
+                        }}
+                    >
+                        Nurtured
+                    </h2>
+                </div>
 
-  {/* 跑馬燈區 */}
-  <div
-    style={{
-      overflow: "hidden",
-      position: "relative",
-      width: "100%",
-    }}
-  >
-    <div
-      style={{
-        display: "flex",
-        animation: "scroll-marquee 120s linear infinite",
-        width: "fit-content",
-      }}
-    >
-      {[...menuItems, ...menuItems].map((item, index) => (
-        <div
-          key={index}
-          style={{
-            flex: "0 0 auto",
-            width: "140px",        // ✅ 小螢幕版改小
-            marginRight: "2rem",   // ✅ 小間距
-          }}
-        >
-          <div
-            className="shadow"
-            style={{
-              aspectRatio: "1/1",
-              overflow: "hidden",
-            }}
-          >
-            <img
-              src={item.img}
-              alt={item.title}
-              className="img-fluid w-100 h-100"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-          <h2
-            style={{
-              color: "#F9A825",
-              fontWeight: 300,
-              fontSize: "24px",
-            }}
-            className="mt-3 "
-          >
-            {item.title}
-          </h2>
-          <p
-            className="text-muted "
-            style={{ lineHeight: "1.4", fontWeight: 400, fontSize: "14px" }}
-          >
-            {item.desc}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
+                {/* Menu標題 */}
+                <div className="mb-5">
+                    <h3 className="mb-5 px-5" style={{ fontWeight: 400 }}>
+                        Menu
+                    </h3>
+                </div>
 
-  {/* 動畫 Keyframes */}
-  <style>{`
+                {/* 跑馬燈區 */}
+                <div
+                    style={{
+                        overflow: "hidden",
+                        position: "relative",
+                        width: "100%",
+                    }}
+                >
+                    <div
+                        style={{
+                            display: "flex",
+                            animation: "scroll-marquee 120s linear infinite",
+                            width: "fit-content",
+                        }}
+                    >
+                        {[...menuItems, ...menuItems].map((item, index) => (
+                            <div
+                                key={index}
+                                style={{
+                                    flex: "0 0 auto",
+                                    width: "140px",        // ✅ 小螢幕版改小
+                                    marginRight: "2rem",   // ✅ 小間距
+                                }}
+                            >
+                                <div
+                                    className="shadow"
+                                    style={{
+                                        aspectRatio: "1/1",
+                                        overflow: "hidden",
+                                    }}
+                                >
+                                    <img
+                                        src={item.img}
+                                        alt={item.title}
+                                        className="img-fluid w-100 h-100"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
+                                <h2
+                                    style={{
+                                        color: "#F9A825",
+                                        fontWeight: 300,
+                                        fontSize: "24px",
+                                    }}
+                                    className="mt-3 "
+                                >
+                                    {item.title}
+                                </h2>
+                                <p
+                                    className="text-muted "
+                                    style={{ lineHeight: "1.4", fontWeight: 400, fontSize: "14px" }}
+                                >
+                                    {item.desc}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* 動畫 Keyframes */}
+                <style>{`
     @keyframes scroll-marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
   `}</style>
-</Container>
+            </Container>
+
+
+
+
+
+
+
+            <br /><br /><br />
+
+
+            <Container fluid className="px-1 px-md-5 py-5 roboto400" >
+                {/* 標題區 */}
+                <div className="d-flex align-items-center flex-wrap mb-4 px-3">
+                    <h1 style={{ color: "#0C756E", fontWeight: 300, fontSize: "50px", margin: 0 }}>
+                        perspolis suit
+                    </h1>
+                    <img
+                        src="/booking.png"
+                        alt="Booking"
+                        style={{
+                            height: "80px",
+                            objectFit: "contain",
+                            marginLeft: "1rem",
+                            marginTop: "1.5rem",
+                        }}
+                      
+                    />
+                </div>
+                <Row className="align-items-end g-4 px-3 mt-2">
+  {/* 人數選擇 */}
+  <Col xs={12} md={3}>
+    <Form.Group className="position-relative">
+      <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
+        Number of Adult / Children
+      </Form.Label>
+      <Form.Select
+        className="border-0 border-bottom rounded-0"
+        style={{
+          backgroundColor: "#ebece7",
+          color: "#0C756E",
+          fontWeight: 400,
+          fontSize: "1.2rem",
+          paddingLeft: 0,
+          paddingRight: 0,
+          outline: "none",
+          boxShadow: "none",
+        }}
+      >
+        <option value="">Select</option>
+        <option>1 Person</option>
+        <option>2 People</option>
+        <option>3 People</option>
+        <option>4 People</option>
+      </Form.Select>
+
+      {/* 🔥 自己加一條假的深綠色線 */}
+      <div
+        style={{
+          height: "1px",
+          backgroundColor: "#0C756E",
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          right: "0",
+          pointerEvents: "none", // 不影響點擊
+        }}
+      ></div>
+    </Form.Group>
+  </Col>
+
+  {/* 日期選擇 */}
+  <Col xs={12} md={3}>
+    <Form.Group className="position-relative">
+      <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
+        Date
+      </Form.Label>
+      <div
+        style={{
+          backgroundColor: "#ebece7",
+          fontSize: "1.2rem",
+          fontWeight: 400,
+          color: "#0C756E",
+          paddingLeft: "0",
+          cursor: "pointer",
+        }}
+        onClick={() => setShowCalendar(prev => !prev)}
+      >
+        {date instanceof Date
+          ? `${(date.getMonth() + 1).toString().padStart(2, "0")}/${date
+              .getDate()
+              .toString()
+              .padStart(2, "0")}/${date.getFullYear()}`
+          : "Select Date"}
+      </div>
+
+      {showCalendar && (
+        <Calendar
+          onChange={(selectedDate) => {
+            setDate(selectedDate);
+            setShowCalendar(false);
+          }}
+          value={date}
+        />
+      )}
+
+      {/* 🔥 一樣加假的底線 */}
+      <div
+        style={{
+          height: "1px",
+          backgroundColor: "#0C756E",
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          right: "0",
+          pointerEvents: "none",
+        }}
+      ></div>
+    </Form.Group>
+  </Col>
+
+  {/* 出發地 */}
+  <Col xs={12} md={3}>
+    <Form.Group className="position-relative">
+      <Form.Label style={{ fontSize: "0.9rem", color: "gray" }}>
+        From / Departure
+      </Form.Label>
+      <Form.Select
+        className="border-0 border-bottom rounded-0"
+        style={{
+          backgroundColor: "#ebece7",
+          color: "#0C756E",
+          fontWeight: 400,
+          fontSize: "1.2rem",
+          paddingLeft: 0,
+          paddingRight: 0,
+          outline: "none",
+          boxShadow: "none",
+        }}
+      >
+        <option value="">Select</option>
+        <option>Toronto - YYZ</option>
+        <option>Toronto - YTZ</option>
+        <option>Toronto (any)</option>
+        <option>Other...</option>
+      </Form.Select>
+
+      {/* 🔥 一樣加假的底線 */}
+      <div
+        style={{
+          height: "1px",
+          backgroundColor: "#0C756E",
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          right: "0",
+          pointerEvents: "none",
+        }}
+      ></div>
+    </Form.Group>
+  </Col>
+
+  {/* 按鈕 */}
+  <Col xs={12} md={3} className="text-md-end">
+    <button
+      style={{
+        border: "1px solid #0C756E",
+        background: "transparent",
+        padding: "0rem 2.5rem",
+        borderRadius: "0.5rem",
+        color: "#0C756E",
+        fontWeight: 500,
+        display: "flex",
+        alignItems: "center",
+        gap: "0.5rem",
+      }}
+    >
+      view booking →
+    </button>
+  </Col>
+</Row>
+
+
+            </Container>
+
+
+
         </div>
     );
 };
