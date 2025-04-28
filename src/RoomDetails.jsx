@@ -244,19 +244,19 @@ const RoomDetails = () => {
                                     <div className="position-absolute top-0 end-0 m-2 d-flex gap-2">
                                         <button
                                             className="border-0 bg-white rounded-pill shadow"
-                                            style={{ width: "150px", height: "40px" }}
+                                            style={{ width: "180px", height: "48px" }}
                                             onClick={handleShowVR}
                                         >
-                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
-                                            See Room
+                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2 w-25" />
+                                            In your space
                                         </button>
                                         <button
                                             className="border-0 bg-white rounded-pill shadow"
-                                            style={{ width: "150px", height: "40px" }}
+                                            style={{ width: "180px", height: "48px" }}
                                             onClick={handleShowView}
                                         >
-                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2" />
-                                            See View
+                                            <img src="/vr.png" alt="VR Icon" className="mb-2 me-2 w-25" />
+                                            Window view
                                         </button>
                                     </div>
                                 </>
