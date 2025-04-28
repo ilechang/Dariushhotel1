@@ -654,12 +654,12 @@ const RoomDetails = () => {
               fontWeight: 300,
               fontSize: "24px",
             }}
-            className="mt-3 text-center"
+            className="mt-3 "
           >
             {item.title}
           </h2>
           <p
-            className="text-muted text-center"
+            className="text-muted "
             style={{ lineHeight: "1.4", fontWeight: 400, fontSize: "14px" }}
           >
             {item.desc}
