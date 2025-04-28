@@ -594,7 +594,7 @@ const RoomDetails = () => {
                     >
                         {/* 兩份卡片，一份接一份 */}
                         {[...menuItems, ...menuItems].map((item, index) => (
-                            <div key={index} style={{ flex: "0 0 auto", width: "300px", marginRight: "4rem" }}>
+                            <div key={index} style={{ flex: "0 0 auto", width: "280px", marginRight: "4rem" }}>
                                 <div className="shadow" style={{ aspectRatio: "1/1", overflow: "hidden" }}>
                                     <img
                                         src={item.img}
