@@ -330,7 +330,7 @@ const RoomDetails = () => {
                                         className="position-absolute"
                                         style={{
                                             top: "10px",
-                                            left: "90%",
+                                            left: "88%",
                                             transf10rm: "translateX(-50%)",
                                             width: "40px",
                                             height: "40px",
