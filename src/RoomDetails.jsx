@@ -634,8 +634,8 @@ const RoomDetails = () => {
                                 key={index}
                                 style={{
                                     flex: "0 0 auto",
-                                    width: "140px",        // ✅ 小螢幕版改小
-                                    marginRight: "2rem",   // ✅ 小間距
+                                    width: "190px",        // ✅ 小螢幕版改小
+                                    marginRight: "3rem",   // ✅ 小間距
                                 }}
                             >
                                 <div
