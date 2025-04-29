@@ -488,7 +488,58 @@ const RoomDetails = () => {
 
 
 
+<br /><br /><br />
 
+
+<Row className="w-100 m-0 mb-4 align-items-start">
+    {/* 左邊圖片 play.png */}
+    <Col
+        xs={12}
+        md={8}
+        className="ps-md-0 px-0 py-2 px-sm-2 py-sm-2 order-2 order-md-1"
+    >
+        <div className="position-relative w-100 overflow-hidden rounded-4" style={{ height: "auto" }}>
+            <img
+                src="/play.png"
+                alt="Play"
+                className="img-fluid"
+                style={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                }}
+            />
+        </div>
+    </Col>
+
+    {/* 右邊圖片 exp.png + 文字 */}
+    <Col
+        xs={12}
+        md={4}
+        className="d-flex flex-column align-items-start pe-md-0 px-0 py-2 px-sm-3 py-sm-2 order-1 order-md-2"
+    >
+        <div className="d-flex flex-column align-items-start ps-4 w-100">
+            {/* 標題圖 exp.png */}
+            <img
+                src="/exp.png"
+                alt="Experience Title"
+                className="img-fluid"
+                style={{
+                    width: "70%", // 可以自己調整大小
+                    height: "auto",
+                    objectFit: "contain",
+                }}
+            />
+            {/* 下面文字 */}
+            <p
+                className="mt-4 lh-base"
+                style={{ position: "relative", zIndex: 2 }}
+            >
+                Step out of your hotel, experience Iran’s rich culture and food. Feel welcomed by the hospitable people.
+            </p>
+        </div>
+    </Col>
+</Row>
 
 
 
